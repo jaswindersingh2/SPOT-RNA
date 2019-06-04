@@ -20,12 +20,12 @@ Prerequisites:
 
 * [TensorFlow (v1.12) ](https://www.tensorflow.org/install/) 
 * [Python3](https://docs.python-guide.org/starting/install3/linux/)
-* [pandas]
-* [numpy]
-* [tqdm]
-* [cPickle]
-* [argparse]
-* [six]
+* pandas
+* numpy
+* tqdm
+* cPickle
+* argparse
+* six
 
 To install:
 
@@ -34,7 +34,6 @@ To install:
 
 How to Use the SPOT-RNA Scripts
 -----
-Inference:
 
 ```
 cd SPOT-RNA
