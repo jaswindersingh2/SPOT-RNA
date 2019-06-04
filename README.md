@@ -25,7 +25,9 @@ To install:
 2. `cd SPOT-RNA`
 3. `wget 'https://www.dropbox.com/s/dsrcf460nbjqpxa/SPOT-RNA-models.tar.gz' || wget 'https://app.nihaocloud.com/f/fbf3315a91d542c0bdc2/?dl=1'`
 4. `tar -xvzf SPOT-RNA-models.tar.gz && rm SPOT-RNA-models.tar.gz`
-5. `pip install -r requirements.txt`
+5. `virtualenv -p python3 venv` (optional)
+6. `source ./venv/bin/activate` (optional)
+7. `pip install -r requirements.txt`
 
 How to Use the SPOT-RNA Scripts
 -----
@@ -40,11 +42,11 @@ Datasets Used For Training, Validation, and Testing
 -----
 
 The following datasets were used for Initial Training:
-* bpRNA [here](https://www.dropbox.com/s/w3kc4iro8ztbf3m/bpRNA_dataset.zip).
+* [bpRNA](https://www.dropbox.com/s/w3kc4iro8ztbf3m/bpRNA_dataset.zip).
 
 
 The following datasets were used for Transfer Learning:
-* PDB [here](https://www.dropbox.com/s/rlr8n9r5mt456cd/PDB_dataset.zip).
+* [PDB](https://www.dropbox.com/s/rlr8n9r5mt456cd/PDB_dataset.zip).
 
 References
 -----
