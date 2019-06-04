@@ -50,14 +50,14 @@ Datasets Used For Training, Validation, and Testing
 -----
 
 The following datasets were used for Initial Training:
-* bpRNA [here](https://www.dropbox.com/s/w3kc4iro8ztbf3m/bpRNA_dataset.zip?dl=0).
+* bpRNA [here](https://www.dropbox.com/s/w3kc4iro8ztbf3m/bpRNA_dataset.zip).
 
 
 The following datasets were used for Transfer Learning:
-* PDB [here](https://www.dropbox.com/s/rlr8n9r5mt456cd/PDB_dataset.zip?dl=0).
+* PDB [here](https://www.dropbox.com/s/rlr8n9r5mt456cd/PDB_dataset.zip).
 
 References
 -----
 ```
-Hanson, J., Paliwal, K. Yang, Y., and Zhou, Y., 2018. RNA Secondary Structure Prediction using an Ensemble of Two-dimensional Recurrent and Residual Convolutional Neural Networks and Transfer Learning.
+Singh, J., Hanson, J., Paliwal, K. Yang, Y., and Zhou, Y., 2018. RNA Secondary Structure Prediction using an Ensemble of Two-dimensional Recurrent and Residual Convolutional Neural Networks and Transfer Learning.
 ```

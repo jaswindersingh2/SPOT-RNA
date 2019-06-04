@@ -48,7 +48,7 @@ for MODEL in range(NUM_MODELS):
     print('\nPredicting for SPOT-RNA model '+str(MODEL))
     with tf.Session(config=config) as sess:
         saver = tf.train.import_meta_graph('dat'+'/model'+str(MODEL)+'.meta')
-        saver.restore(sess,'dat'+'/model'+str(MODEL))
+        saver.restore(sess,'SPOT-RNA-models'+'/model'+str(MODEL))
         graph = tf.get_default_graph()
         init_test =  graph.get_operation_by_name('make_initializer_2')
         tmp_out = graph.get_tensor_by_name('output_FC/fully_connected/BiasAdd:0')
@@ -83,8 +83,8 @@ print('\nPost Processing and Saving Output')
 for i in tqdm(RNA_ids):
     ensemble_outputs[i] = np.mean(outputs[i],0)
     prob_to_secondary_structure(ensemble_outputs[i], mask[i], sequences[i], i, non_canonical=args.non_canonical, save_result_path=args.output_dir)
-with open('ensemble_outputs', 'wb') as f:
-    pkl.dump(ensemble_outputs, f, pkl.HIGHEST_PROTOCOL)
+    np.savetxt('outputs/'+ i +'.prob', x, delimiter='\t')
+
 print('\nFinished!')
 end = time.time()
 print('\nProcesssing Time {} seconds'.format(end - start))
