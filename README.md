@@ -37,7 +37,7 @@ How to Use the SPOT-RNA Scripts
 -----
 
 ```
-python3 SPOT-RNA.py  --input_seq samples/4qln-1-A  --output_dir 'outputs/'
+python3 SPOT-RNA.py  --input_seq sample_inputs/4qln-1-A  --output_dir 'outputs/'
 ```
 
 ```
