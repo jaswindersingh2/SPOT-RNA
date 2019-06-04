@@ -21,6 +21,11 @@ several python packages, please verify that they are installed before use:
 USAGE:
 SPOT-RNA uses RNA sequence as input:
 
+
+Model Availability:
+
+The models used for SPOT-RNA are available from the Nihao cloud service [here](https://app.nihaocloud.com/f/882db8caf4be43ddaa04/?dl=1)
+
 To run for a sample RNA, please  run:
 
 python3 SPOT-RNA.py  --input_seq samples/4qln-1-A  --output_dir 'outputs/'
