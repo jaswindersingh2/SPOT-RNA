@@ -3,7 +3,7 @@ SPOT-RNA: RNA Secondary Structure Prediction using an Ensemble of Two-dimensiona
 
 USAGE:
 -----
-SPOT-RNA uses RNA sequence in fasta format as input and provide output in ct format and base-pair probability in .txt file.
+SPOT-RNA uses RNA sequence in fasta format as input and provide output in ct format and base-pair probability in text file.
 
 Installation:
 ----
