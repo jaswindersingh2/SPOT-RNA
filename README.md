@@ -32,11 +32,17 @@ To install:
 How to Use the SPOT-RNA Scripts
 -----
 
+For single sequence:
 ```
-python3 SPOT-RNA.py  --input_seq sample_inputs/4qln-1-A.seq  --output_dir 'outputs/'
+python3 SPOT-RNA.py  --input_seq sample_inputs/single_seq.fasta  --output_dir 'outputs/'
 ```
 
-and check the outputs against the SPOT-RNA files in sample directory. To specify running on GPU please set the --gpu argument. Furthermore, SPOT-RNA also accepts multiple sequences in one fasta file. 
+For batch of sequences:
+```
+python3 SPOT-RNA.py  --input_seq sample_inputs/batch_seq.fasta  --output_dir 'outputs/'
+```
+
+and check the outputs against the SPOT-RNA files in sample directory. To specify running on GPU please set the --gpu argument.
 
 Datasets Used For Training, Validation, and Testing
 -----
