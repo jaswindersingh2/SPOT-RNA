@@ -82,7 +82,6 @@ print('\nPost Processing and Saving Output')
 for i in tqdm(RNA_ids):
     ensemble_outputs[i] = np.mean(outputs[i],0)
     prob_to_secondary_structure(ensemble_outputs[i], mask[i], sequences[i], i, non_canonical=args.non_canonical, save_result_path=args.output_dir)
-    np.savetxt('outputs/'+ i +'.prob', ensemble_outputs[i], delimiter='\t')
 
 print('\nFinished!')
 end = time.time()
