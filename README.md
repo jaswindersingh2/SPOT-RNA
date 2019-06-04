@@ -24,7 +24,9 @@ SPOT-RNA uses RNA sequence as input:
 
 Model Availability:
 
+The models used for SPOT-RNA are available from the Nihao cloud service [here](https://www.dropbox.com/s/g9ic16uz41zv9bp/SPOT-RNA-models.zip?dl=0)
 The models used for SPOT-RNA are available from the Nihao cloud service [here](https://app.nihaocloud.com/f/882db8caf4be43ddaa04/?dl=1)
+
 
 To run for a sample RNA, please  run:
 
