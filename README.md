@@ -38,9 +38,7 @@ How to Use the SPOT-RNA Scripts
 python3 SPOT-RNA.py  --input_seq sample_inputs/4qln-1-A.seq  --output_dir 'outputs/'
 ```
 
-```
 and check the outputs against the SPOT-RNA files in sample directory. To specify running on GPU please set the --gpu argument. Furthermore, SPOT-RNA also accepts multiple sequences in one fasta file. 
-```
 
 Datasets Used For Training, Validation, and Testing
 -----
