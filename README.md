@@ -6,13 +6,11 @@ USAGE:
 SPOT-RNA uses RNA sequence as input:
 
 Model Availability:
------
 
 The models used for SPOT-RNA can be downloaded from the Dropbox [here](https://www.dropbox.com/s/dsrcf460nbjqpxa/SPOT-RNA-models.tar.gz) or Nihao cloud service [here](https://app.nihaocloud.com/f/882db8caf4be43ddaa04/?dl=1)
 
 
-Installation
------
+Installation:
 
 It is recommended to use a [virtual environment](http://virtualenvwrapper.readthedocs.io/en/latest/install.html) for installation.
 
@@ -42,7 +40,6 @@ python3 SPOT-RNA.py  --input_seq sample_inputs/4qln-1-A.seq  --output_dir 'outpu
 
 ```
 and check the outputs against the SPOT-RNA files in sample directory. To specify running on GPU please set the --gpu argument. Furthermore, SPOT-RNA also accepts multiple sequences in one fasta file. 
-Training:
 ```
 
 Datasets Used For Training, Validation, and Testing
