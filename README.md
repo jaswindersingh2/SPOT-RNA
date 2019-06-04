@@ -18,6 +18,7 @@ Prerequisites:
 * tqdm
 * argparse
 * six
+* virtualenv or Anaconda (optional)
 
 To install:
 
