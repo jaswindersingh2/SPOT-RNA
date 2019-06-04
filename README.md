@@ -7,7 +7,7 @@ SPOT-RNA uses RNA sequence as input:
 
 Model Availability:
 
-The models used for SPOT-RNA can be downloaded from the Dropbox [here](https://www.dropbox.com/s/dsrcf460nbjqpxa/SPOT-RNA-models.tar.gz) or Nihao cloud service [here](https://app.nihaocloud.com/f/882db8caf4be43ddaa04/?dl=1)
+The models used for SPOT-RNA can be downloaded from the Dropbox [here](https://www.dropbox.com/s/dsrcf460nbjqpxa/SPOT-RNA-models.tar.gz) or Nihao cloud service [here](https://app.nihaocloud.com/f/fbf3315a91d542c0bdc2/?dl=1)
 
 
 Installation:
@@ -28,8 +28,9 @@ To install:
 
 1. `git clone https://github.com/jaswindersingh2/SPOT-RNA.git`
 2. `cd SPOT-RNA`
-2. `wget 'https://www.dropbox.com/s/dsrcf460nbjqpxa/SPOT-RNA-models.tar.gz' && tar -xvzf SPOT-RNA-models.tar.gz && rm SPOT-RNA-models.tar.gz`
-3. `pip install -r requirements.txt`
+3. `wget 'https://www.dropbox.com/s/dsrcf460nbjqpxa/SPOT-RNA-models.tar.gz' || wget 'https://app.nihaocloud.com/f/fbf3315a91d542c0bdc2/?dl=1'`
+4. `tar -xvzf SPOT-RNA-models.tar.gz && rm SPOT-RNA-models.tar.gz`
+5. `pip install -r requirements.txt`
 
 How to Use the SPOT-RNA Scripts
 -----
