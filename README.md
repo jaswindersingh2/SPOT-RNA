@@ -3,12 +3,7 @@ SPOT-RNA: RNA Secondary Structure Prediction using an Ensemble of Two-dimensiona
 
 USAGE:
 -----
-SPOT-RNA uses RNA sequence as input:
-
-Model Availability:
-
-The models used for SPOT-RNA can be downloaded from the Dropbox [here](https://www.dropbox.com/s/dsrcf460nbjqpxa/SPOT-RNA-models.tar.gz) or Nihao cloud service [here](https://app.nihaocloud.com/f/fbf3315a91d542c0bdc2/?dl=1)
-
+SPOT-RNA uses RNA sequence in fasta format as input and provide output in ct format and base-pair probability in .txt file.
 
 Installation:
 ----
