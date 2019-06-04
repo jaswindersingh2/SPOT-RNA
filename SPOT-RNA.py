@@ -46,7 +46,7 @@ for MODEL in range(NUM_MODELS):
     #sess = tf.Session(config=session_conf)
     print('\nPredicting for SPOT-RNA model '+str(MODEL))
     with tf.Session(config=config) as sess:
-        saver = tf.train.import_meta_graph('dat'+'/model'+str(MODEL)+'.meta')
+        saver = tf.train.import_meta_graph('SPOT-RNA-models'+'/model'+str(MODEL)+'.meta')
         saver.restore(sess,'SPOT-RNA-models'+'/model'+str(MODEL))
         graph = tf.get_default_graph()
         init_test =  graph.get_operation_by_name('make_initializer_2')
