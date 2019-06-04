@@ -28,7 +28,7 @@ Prerequisites:
 
 To install:
 
-1. `git clone git@github.com:jaswindersingh2/SPOT-RNA.git`
+1. `git clone git@github.com/jaswindersingh2/SPOT-RNA.git`
 2. `cd SPOT-RNA`
 2. `wget 'https://www.dropbox.com/s/dsrcf460nbjqpxa/SPOT-RNA-models.tar.gz' && tar -xvzf SPOT-RNA-models.tar.gz && rm SPOT-RNA-models.tar.gz`
 3. `pip install -r requirements.txt`
