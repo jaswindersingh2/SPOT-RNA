@@ -58,5 +58,5 @@ The following datasets were used for Transfer Learning:
 References
 -----
 ```
-Singh, J., Hanson, J., Paliwal, K. Yang, Y., and Zhou, Y., 2018. RNA Secondary Structure Prediction using an Ensemble of Two-dimensional Recurrent and Residual Convolutional Neural Networks and Transfer Learning.
+Singh, J., Hanson, J., Paliwal, K. Yang, Y., and Zhou, Y., 2019. RNA Secondary Structure Prediction using an Ensemble of Two-dimensional Recurrent and Residual Convolutional Neural Networks and Transfer Learning.
 ```
