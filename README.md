@@ -11,7 +11,7 @@ The models used for SPOT-RNA can be downloaded from the Dropbox [here](https://w
 
 
 Installation:
-
+----
 It is recommended to use a [virtual environment](http://virtualenvwrapper.readthedocs.io/en/latest/install.html) for installation.
 
 Prerequisites:
