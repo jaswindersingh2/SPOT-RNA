@@ -23,7 +23,6 @@ Prerequisites:
 * pandas
 * numpy
 * tqdm
-* cPickle
 * argparse
 * six
 

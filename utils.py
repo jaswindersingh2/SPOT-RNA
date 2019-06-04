@@ -1,7 +1,6 @@
 import numpy as np
 import os, six, sys
 import tensorflow as tf
-import pickle as pkl
 import random
 from tqdm import tqdm
 

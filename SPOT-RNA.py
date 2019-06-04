@@ -2,7 +2,6 @@ import tensorflow as tf
 import numpy as np
 import os
 from tqdm import tqdm
-import pickle as pkl
 import argparse
 from utils import create_tfr_files, prob_to_secondary_structure
 import time
