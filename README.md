@@ -4,7 +4,7 @@ SPOT-RNA: RNA Secondary Structure Prediction using an Ensemble of Two-dimensiona
 OVERVIEW
 ====
 SPOT-RNA is a single sequence-based RNA secondary structure predictor. It used an ensemble of deep learning methods (ResNets and BiLSTM) (Figure 1) to infer the base-pair probability of nucleotides within the sequence. SPOT-RNA was initially trained on non-redundant bpRNA[1] dataset in which secondary structure was derived using comparative sequence analysis. After initial training, transfer learning was used to further train SPOT-RNA on high resolution non-redundant structured RNAs from Protein Data Bank (PDB)[2]. SPOT-RNA can predict all kind of base-pair including pseudoknots, non-canonical, lone, and triplets base-pairs. SPOT-RNA is also available as web-server at http://sparks-lab.org/jaswinder/server/SPOT-RNA/. The web-server provides an arc diagram and a 2D diagram of predicted RNA secondary
-the structure through Visualization Applet for RNA (VARNA) tool along with a dot plot of SPOT-RNA predicted base-pair
+the structure through Visualization Applet for RNA (VARNA)[3] tool along with a dot plot of SPOT-RNA predicted base-pair
 probabilities.
 
 |![](./SPOT-RNA-architecture.png)
@@ -62,7 +62,7 @@ python3 SPOT-RNA.py  --input_seq sample_inputs/batch_seq.fasta  --output_dir 'ou
 and check the outputs against the SPOT-RNA files in sample directory. To specify running on GPU please set the --gpu argument.
 
 Datasets Used For Training, Validation, and Testing
------
+====
 
 The following datasets were used for Initial Training:
 * [bpRNA](https://www.dropbox.com/s/w3kc4iro8ztbf3m/bpRNA_dataset.zip)[1]
@@ -72,12 +72,18 @@ The following datasets were used for Transfer Learning:
 * [PDB](https://www.dropbox.com/s/rlr8n9r5mt456cd/PDB_dataset.zip)[2]
 
 References
------
+====
 [1] Padideh Danaee, Mason Rouches, Michelle Wiley, Dezhong Deng, Liang Huang, David Hendrix, bpRNA: large-scale automated annotation and analysis of RNA secondary structure, Nucleic Acids Research, Volume 46, Issue 11, 20 June 2018, Pages 5381–5394, https://doi.org/10.1093/nar/gky285
 
 [2] H.M. Berman, J. Westbrook, Z. Feng, G. Gilliland, T.N. Bhat, H. Weissig, I.N. Shindyalov, P.E. Bourne.
 (2000) The Protein Data Bank Nucleic Acids Research, 28: 235-242.
 
+[3]  VARNA: Interactive drawing and editing of the RNA secondary structure Kévin Darty, Alain Denise and Yann Ponty Bioinformatics, pp. 1974-1975, Vol. 25, no. 15, 2009 
+
 If you use this code for your research please cite the following papers:
------
+====
 Singh, J., Hanson, J., Paliwal, and Zhou, Y., 2019. RNA Secondary Structure Prediction using an Ensemble of Two-dimensional Recurrent and Residual Convolutional Neural Networks and Transfer Learning (Under Review).
+
+Licence
+====
+Mozilla Public License 2.0
