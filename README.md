@@ -9,7 +9,7 @@ probabilities.
 
 |![](./SPOT-RNA-architecture.png)
 |----|
-| <p align="center"width="200" height="100"> <b>Figure 1:</b> The network layout of the SPOT-RNA, where L is the sequence length of a target RNA, Act. indicates the activation function, Norm. indicates the normalization function, and PreT indicates the pretrained (initial trained) models trained on the bpRNA dataset.|
+| <p align="center"width="50" height="50"> <b>Figure 1:</b> The network layout of the SPOT-RNA, where L is the sequence length of a target RNA, Act. indicates the activation function, Norm. indicates the normalization function, and PreT indicates the pretrained (initial trained) models trained on the bpRNA dataset.|
 
 USAGE:
 -----
