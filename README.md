@@ -73,7 +73,7 @@ The following datasets were used for Transfer Learning:
 
 References
 ====
-If you use this code for your research please cite the following papers:
+If you use SPOT-RNA for your research please cite the following papers:
 ----
 Singh, J., Hanson, J., Paliwal, and Zhou, Y., 2019. SPOT-RNA: RNA Secondary Structure Prediction using an Ensemble of Two-dimensional Recurrent and Residual Convolutional Neural Networks and Transfer Learning (Under Review).
 
