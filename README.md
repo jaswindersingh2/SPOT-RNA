@@ -1,9 +1,9 @@
 SPOT-RNA: RNA Secondary Structure Prediction using an Ensemble of Two-dimensional Recurrent and Residual Convolutional Neural Networks and Transfer Learning.
 ====
 
-OVERVIEW:
------
-SPOT-RNA is a single sequence-based RNA secondary structure predictor. It used an ensemble of deep learning methods (ResNets and BiLSTM) (Figure 1) to infer the base-pair probability of nucleotides within the sequence. SPOT-RNA was initially trained on non-redundant bpRNA dataset in which secondary structure was derived using comparative sequence analysis. After initial training, transfer learning was used to further train SPOT-RNA on high resolution non-redundant structured RNAs from Protein Data Bank (PDB). SPOT-RNA can predict all kind of base-pair including pseudoknots, non-canonical, lone, and triplets base-pairs. SPOT-RNA is also available as web-server at http://sparks-lab.org/jaswinder/server/SPOT-RNA/. The web-server provides an arc diagram and a 2D diagram of predicted RNA secondary
+OVERVIEW
+====
+SPOT-RNA is a single sequence-based RNA secondary structure predictor. It used an ensemble of deep learning methods (ResNets and BiLSTM) (Figure 1) to infer the base-pair probability of nucleotides within the sequence. SPOT-RNA was initially trained on non-redundant bpRNA[1] dataset in which secondary structure was derived using comparative sequence analysis. After initial training, transfer learning was used to further train SPOT-RNA on high resolution non-redundant structured RNAs from Protein Data Bank (PDB)[2]. SPOT-RNA can predict all kind of base-pair including pseudoknots, non-canonical, lone, and triplets base-pairs. SPOT-RNA is also available as web-server at http://sparks-lab.org/jaswinder/server/SPOT-RNA/. The web-server provides an arc diagram and a 2D diagram of predicted RNA secondary
 the structure through Visualization Applet for RNA (VARNA) tool along with a dot plot of SPOT-RNA predicted base-pair
 probabilities.
 
@@ -11,16 +11,14 @@ probabilities.
 |----|
 | <p align="center"> <b>Figure 1:</b> The network layout of the SPOT-RNA, where L is the sequence length of a target RNA, Act. indicates the activation function, Norm. indicates the normalization function, and PreT indicates the pretrained (initial trained) models trained on the bpRNA dataset.|
 
-USAGE:
------
-SPOT-RNA uses RNA sequence in fasta format as input and provide output in ct format and base-pair probability in text file.
-
-Installation:
+SYSTEM REQUIREMENTS
+====
+Hardware Requirments:
 ----
-It is recommended to use a [virtual environment](http://virtualenvwrapper.readthedocs.io/en/latest/install.html) for installation.
+SPOT-RNA predictor requires only a standard computer with around 8 GB RAM to support the in-memory operations for RNAs sequence length less than 500.
 
-Prerequisites:
-
+Software Requirments:
+----
 * [TensorFlow (v1.12) ](https://www.tensorflow.org/install/) 
 * [Python3](https://docs.python-guide.org/starting/install3/linux/)
 * pandas
@@ -29,6 +27,15 @@ Prerequisites:
 * argparse
 * six
 * virtualenv or Anaconda (optional)
+
+SPOT-RNA has been tested on Ubuntu 16.04 operating system.
+
+USAGE:
+====
+
+Installation:
+----
+It is recommended to use a [virtual environment](http://virtualenvwrapper.readthedocs.io/en/latest/install.html) for installation.
 
 To install:
 
@@ -39,7 +46,7 @@ To install:
 5. `virtualenv -p python3 venv && source ./venv/bin/activate || conda create -n venv python=3.6 anaconda && source activate venv` (optional)
 6. `pip install -r requirements.txt`
 
-How to Use the SPOT-RNA Scripts
+To run the SPOT-RNA Scripts
 -----
 
 For single sequence:
