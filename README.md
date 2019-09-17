@@ -7,9 +7,10 @@ SPOT-RNA is a single sequence-based RNA secondary structure predictor. It used a
 the structure through Visualization Applet for RNA (VARNA) tool along with a dot plot of SPOT-RNA predicted base-pair
 probabilities.
 
-|![](./SPOT-RNA-architecture.png "The network layout of the SPOT-RNA, where L is the sequence length of a target RNA, Act. indicates the activation
-function, Norm. indicates the normalization function, and PreT indicates the pretrained (initial trained) models trained on the
-bpRNA dataset.")|
+|![](./SPOT-RNA-architecture.png)
+|----|
+| <p align="center"> <b>Figure 1:</b> The network layout of the SPOT-RNA, where L is the sequence length of a target RNA, Act. indicates the activation function, Norm. indicates the normalization function, and PreT indicates the pretrained (initial trained) models trained on the
+bpRNA dataset.|
 
 USAGE:
 -----
