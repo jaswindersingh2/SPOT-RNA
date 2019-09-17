@@ -15,7 +15,7 @@ SYSTEM REQUIREMENTS
 ====
 Hardware Requirments:
 ----
-SPOT-RNA predictor requires only a standard computer with around 8 GB RAM to support the in-memory operations for RNAs sequence length less than 500.
+SPOT-RNA predictor requires only a standard computer with around 16 GB RAM to support the in-memory operations for RNAs sequence length less than 500.
 
 Software Requirments:
 ----
@@ -30,7 +30,7 @@ Software Requirments:
 
 SPOT-RNA has been tested on Ubuntu 16.04 operating system.
 
-USAGE:
+USAGE
 ====
 
 Installation:
@@ -73,6 +73,12 @@ The following datasets were used for Transfer Learning:
 
 References
 ====
+If you use this code for your research please cite the following papers:
+----
+Singh, J., Hanson, J., Paliwal, and Zhou, Y., 2019. SPOT-RNA: RNA Secondary Structure Prediction using an Ensemble of Two-dimensional Recurrent and Residual Convolutional Neural Networks and Transfer Learning (Under Review).
+
+Other references:
+----
 [1] Padideh Danaee, Mason Rouches, Michelle Wiley, Dezhong Deng, Liang Huang, David Hendrix, bpRNA: large-scale automated annotation and analysis of RNA secondary structure, Nucleic Acids Research, Volume 46, Issue 11, 20 June 2018, Pages 5381–5394, https://doi.org/10.1093/nar/gky285
 
 [2] H.M. Berman, J. Westbrook, Z. Feng, G. Gilliland, T.N. Bhat, H. Weissig, I.N. Shindyalov, P.E. Bourne.
@@ -80,9 +86,6 @@ References
 
 [3]  VARNA: Interactive drawing and editing of the RNA secondary structure Kévin Darty, Alain Denise and Yann Ponty Bioinformatics, pp. 1974-1975, Vol. 25, no. 15, 2009 
 
-If you use this code for your research please cite the following papers:
-====
-Singh, J., Hanson, J., Paliwal, and Zhou, Y., 2019. RNA Secondary Structure Prediction using an Ensemble of Two-dimensional Recurrent and Residual Convolutional Neural Networks and Transfer Learning (Under Review).
 
 Licence
 ====
