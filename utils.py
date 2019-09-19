@@ -114,8 +114,8 @@ def flatten(x):
             result.append(el)
     return result
 
-# ----------------------- remove triplet pairs--------------------------------#
-def find_triplet_pairs(pred_pairs, y_pred):
+# ----------------------- find multiplets pairs--------------------------------#
+def multiplets_pairs(pred_pairs):
 
     pred_pair = [i[:2] for i in pred_pairs]
     temp_list = flatten(pred_pair)
@@ -140,107 +140,28 @@ def find_triplet_pairs(pred_pairs, y_pred):
             if i in k:
                 temp4.append(k)
         temp3.append(temp4)
+        
+    return temp3
 
-    delete_pair = []
-    for i in temp3:
-        if len(i) == 2:
-            if y_pred[i[0][0], i[0][1]] > y_pred[i[1][0], i[1][1]]:
-                delete_pair.append(i[1])
-            else:
-                delete_pair.append(i[0])
-        elif len(i) == 3:
-            if y_pred[i[0][0], i[0][1]] > y_pred[i[1][0], i[1][1]] and y_pred[i[0][0], i[0][1]] > y_pred[
-                i[2][0], i[2][1]]:
-                delete_pair.append(i[1])
-                delete_pair.append(i[2])
-            elif y_pred[i[1][0], i[1][1]] > y_pred[i[0][0], i[0][1]] and y_pred[i[1][0], i[1][1]] > y_pred[
-                i[2][0], i[2][1]]:
-                delete_pair.append(i[0])
-                delete_pair.append(i[2])
-            else:
-                delete_pair.append(i[0])
-                delete_pair.append(i[1])
-        elif len(i) == 4:
-            if y_pred[i[0][0], i[0][1]] > y_pred[i[1][0], i[1][1]] and y_pred[i[0][0], i[0][1]] > y_pred[i[2][0], i[2][1]] and y_pred[i[0][0], i[0][1]] > y_pred[i[3][0], i[3][1]]:
-                delete_pair.append(i[1])
-                delete_pair.append(i[2])
-                delete_pair.append(i[3])
-            elif y_pred[i[1][0], i[1][1]] > y_pred[i[0][0], i[0][1]] and y_pred[i[1][0], i[1][1]] > y_pred[i[2][0], i[2][1]] and y_pred[i[1][0], i[1][1]] > y_pred[i[3][0], i[3][1]]:
-                delete_pair.append(i[0])
-                delete_pair.append(i[2])
-                delete_pair.append(i[3])              
-            elif y_pred[i[2][0], i[2][1]] > y_pred[i[0][0], i[0][1]] and y_pred[i[2][0], i[2][1]] > y_pred[i[1][0], i[1][1]] and y_pred[i[2][0], i[2][1]] > y_pred[i[3][0], i[3][1]]:
-                delete_pair.append(i[0])
-                delete_pair.append(i[1])
-                delete_pair.append(i[3])
-        elif len(i) == 5:
-            if y_pred[i[0][0], i[0][1]] > y_pred[i[1][0], i[1][1]] and y_pred[i[0][0], i[0][1]] > y_pred[i[2][0], i[2][1]] and y_pred[i[0][0], i[0][1]] > y_pred[i[3][0], i[3][1]] and y_pred[i[0][0], i[0][1]] > y_pred[i[4][0], i[4][1]]:
-                delete_pair.append(i[1])
-                delete_pair.append(i[2])
-                delete_pair.append(i[3])
-                delete_pair.append(i[4])
-            elif y_pred[i[1][0], i[1][1]] > y_pred[i[0][0], i[0][1]] and y_pred[i[1][0], i[1][1]] > y_pred[i[2][0], i[2][1]] and y_pred[i[1][0], i[1][1]] > y_pred[i[3][0], i[3][1]] and y_pred[i[1][0], i[1][1]] > y_pred[i[4][0], i[4][1]]:
-                delete_pair.append(i[1])
-                delete_pair.append(i[2])
-                delete_pair.append(i[3])
-                delete_pair.append(i[4])              
-            elif y_pred[i[2][0], i[2][1]] > y_pred[i[0][0], i[0][1]] and y_pred[i[2][0], i[2][1]] > y_pred[i[1][0], i[1][1]] and y_pred[i[2][0], i[2][1]] > y_pred[i[3][0], i[3][1]] and y_pred[i[2][0], i[2][1]] > y_pred[i[4][0], i[4][1]]:
-                delete_pair.append(i[0])
-                delete_pair.append(i[1])
-                delete_pair.append(i[3])
-                delete_pair.append(i[4])
-            elif y_pred[i[3][0], i[3][1]] > y_pred[i[0][0], i[0][1]] and y_pred[i[3][0], i[3][1]] > y_pred[i[1][0], i[1][1]] and y_pred[i[3][0], i[3][1]] > y_pred[i[2][0], i[2][1]] and y_pred[i[3][0], i[3][1]] > y_pred[i[4][0], i[4][1]]:
-                delete_pair.append(i[0])
-                delete_pair.append(i[1])
-                delete_pair.append(i[2])
-                delete_pair.append(i[4])
-            else:
-                delete_pair.append(i[0])
-                delete_pair.append(i[1])
-                delete_pair.append(i[2])
-                delete_pair.append(i[3])
-        elif len(i) == 6:
-            if y_pred[i[0][0], i[0][1]] > y_pred[i[1][0], i[1][1]] and y_pred[i[0][0], i[0][1]] > y_pred[i[2][0], i[2][1]] and y_pred[i[0][0], i[0][1]] > y_pred[i[3][0], i[3][1]] and y_pred[i[0][0], i[0][1]] > y_pred[i[4][0], i[4][1]] and y_pred[i[0][0], i[0][1]] > y_pred[i[5][0], i[5][1]]:
-                delete_pair.append(i[1])
-                delete_pair.append(i[2])
-                delete_pair.append(i[3])
-                delete_pair.append(i[4])
-                delete_pair.append(i[5])
-            elif y_pred[i[1][0], i[1][1]] > y_pred[i[0][0], i[0][1]] and y_pred[i[1][0], i[1][1]] > y_pred[i[2][0], i[2][1]] and y_pred[i[1][0], i[1][1]] > y_pred[i[3][0], i[3][1]] and y_pred[i[1][0], i[1][1]] > y_pred[i[4][0], i[4][1]] and y_pred[i[1][0], i[1][1]] > y_pred[i[5][0], i[5][1]]:
-                delete_pair.append(i[1])
-                delete_pair.append(i[2])
-                delete_pair.append(i[3])
-                delete_pair.append(i[4])              
-                delete_pair.append(i[5])              
-            elif y_pred[i[2][0], i[2][1]] > y_pred[i[0][0], i[0][1]] and y_pred[i[2][0], i[2][1]] > y_pred[i[1][0], i[1][1]] and y_pred[i[2][0], i[2][1]] > y_pred[i[3][0], i[3][1]] and y_pred[i[2][0], i[2][1]] > y_pred[i[4][0], i[4][1]] and y_pred[i[2][0], i[2][1]] > y_pred[i[5][0], i[5][1]]:
-                delete_pair.append(i[0])
-                delete_pair.append(i[1])
-                delete_pair.append(i[3])
-                delete_pair.append(i[4])
-                delete_pair.append(i[5])
-            elif y_pred[i[3][0], i[3][1]] > y_pred[i[0][0], i[0][1]] and y_pred[i[3][0], i[3][1]] > y_pred[i[1][0], i[1][1]] and y_pred[i[3][0], i[3][1]] > y_pred[i[2][0], i[2][1]] and y_pred[i[3][0], i[3][1]] > y_pred[i[4][0], i[4][1]] and y_pred[i[3][0], i[3][1]] > y_pred[i[5][0], i[5][1]]:
-                delete_pair.append(i[0])
-                delete_pair.append(i[1])
-                delete_pair.append(i[2])
-                delete_pair.append(i[4])
-                delete_pair.append(i[5])
-            elif y_pred[i[4][0], i[4][1]] > y_pred[i[0][0], i[0][1]] and y_pred[i[4][0], i[4][1]] > y_pred[i[1][0], i[1][1]] and y_pred[i[4][0], i[4][1]] > y_pred[i[2][0], i[2][1]] and y_pred[i[4][0], i[4][1]] > y_pred[i[3][0], i[3][1]] and y_pred[i[4][0], i[4][1]] > y_pred[i[5][0], i[5][1]]:
-                delete_pair.append(i[0])
-                delete_pair.append(i[1])
-                delete_pair.append(i[2])
-                delete_pair.append(i[3])
-                delete_pair.append(i[5])
-            else:
-                delete_pair.append(i[0])
-                delete_pair.append(i[1])
-                delete_pair.append(i[2])
-                delete_pair.append(i[3])
-                delete_pair.append(i[4])
-        elif len(i) > 6:
-            print('one residue is in contact with more than 6 residues', len(i))
-
-    return delete_pair
-
+def multiplets_free_bp(pred_pairs, y_pred):
+    L = len(pred_pairs)
+    multiplets_bp = multiplets_pairs(pred_pairs)
+    save_multiplets = []
+    while len(multiplets_bp) > 0:
+        remove_pairs = []
+        for i in multiplets_bp:
+            save_prob = []
+            for j in i:
+                save_prob.append(y_pred[j[0], j[1]])
+            remove_pairs.append(i[save_prob.index(min(save_prob))])
+            save_multiplets.append(i[save_prob.index(min(save_prob))])
+        pred_pairs = [k for k in pred_pairs if k not in remove_pairs]
+        multiplets_bp = multiplets_pairs(pred_pairs)
+    save_multiplets = [list(x) for x in set(tuple(x) for x in save_multiplets)]
+    assert L == len(pred_pairs)+len(save_multiplets)
+    #print(L, len(pred_pairs), save_multiplets)
+    return pred_pairs, save_multiplets
+        
 def output_mask(seq, non_canonical=True):
     if non_canonical:
         include_pairs = ['AU', 'UA', 'GC', 'CG', 'GU', 'UG', 'CC', 'GG', 'AG', 'CA', 'AC', 'UU', 'AA', 'CU', 'GA', 'UC']
@@ -251,7 +172,7 @@ def output_mask(seq, non_canonical=True):
         for j, J in enumerate(seq):
             if str(I) + str(J) in include_pairs:
                 mask[i, j] = 1
-    return  mask
+    return mask
 
 def ct_file_output(pairs, seq, id, save_result_path):
 
@@ -269,7 +190,7 @@ def ct_file_output(pairs, seq, id, save_result_path):
                       np.char.mod('%d', col5), np.char.mod('%d', col6))).T
     #os.chdir(save_result_path)
     #print(os.path.join(save_result_path, str(id[0:-1]))+'.spotrna')
-    np.savetxt(os.path.join(save_result_path, str(id))+'.spotrna', (temp), delimiter='\t\t\t\t', fmt="%s", header=str(len(seq)) + '\t\t\t\t' + str(id) + '\t\t\t\t' + 'SPOT-RNA output\n' , comments='')
+    np.savetxt(os.path.join(save_result_path, str(id))+'.ct', (temp), delimiter='\t\t\t\t', fmt="%s", header=str(len(seq)) + '\t\t\t\t' + str(id) + '\t\t\t\t' + 'SPOT-RNA output\n' , comments='')
 
     return
 
@@ -294,8 +215,8 @@ def prob_to_secondary_structure(ensemble_outputs, label_mask, seq, name, non_can
     outputs_T = np.greater_equal(outputs, Threshold)
     pred_pairs = [i for I, i in enumerate(seq_pairs) if outputs_T[I]]
     pred_pairs = [i[:2] for i in pred_pairs]
-    delete_pairs = find_triplet_pairs(pred_pairs, y_pred)
-    bad_pairs = hair_pin_assumption(pred_pairs)
+    pred_pairs, save_multiplets = multiplets_free_bp(pred_pairs, y_pred)
+    # bad_pairs = hair_pin_assumption(pred_pairs)
     pred_pairs = [i for i in pred_pairs if i not in delete_pairs]   # remove triplets
     #pred_pairs = [i for i in pred_pairs if i not in bad_pairs]     # remove not follow hair pin assumption
     ct_file_output(pred_pairs, seq, name, save_result_path)
