@@ -217,8 +217,8 @@ def prob_to_secondary_structure(ensemble_outputs, label_mask, seq, name, non_can
     pred_pairs = [i[:2] for i in pred_pairs]
     pred_pairs, save_multiplets = multiplets_free_bp(pred_pairs, y_pred)
     # bad_pairs = hair_pin_assumption(pred_pairs)
-    pred_pairs = [i for i in pred_pairs if i not in delete_pairs]   # remove triplets
-    #pred_pairs = [i for i in pred_pairs if i not in bad_pairs]     # remove not follow hair pin assumption
+    # pred_pairs = [i for i in pred_pairs if i not in delete_pairs]   # remove triplets
+    # pred_pairs = [i for i in pred_pairs if i not in bad_pairs]     # remove not follow hair pin assumption
     ct_file_output(pred_pairs, seq, name, save_result_path)
     np.savetxt(save_result_path + '/'+ name +'.prob', y_pred, delimiter='\t')
 
