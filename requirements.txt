@@ -1,6 +1,6 @@
 tensorflow==1.12
 pandas
-numpy
+numpy==1.16.4
 tqdm
 argparse
 six
