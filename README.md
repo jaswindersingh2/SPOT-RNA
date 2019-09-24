@@ -88,7 +88,7 @@ To get the secondary structure motifs like stem, helix, loops from the predicted
 ```
 perl -e 'use Graph;'
 ```
-If the output of this command looks like 'Can't locate Graph.pm in @INC (you may need to install the Graph module) (@INC contains: .........' then the following command can be used to install this module:
+If the output of this command looks like *'Can't locate Graph.pm in @INC (you may need to install the Graph module) (@INC contains: .........'* then the following command can be used to install this module:
 ```
 sudo apt install cpanminus && sudo cpanm Graph
 ```
