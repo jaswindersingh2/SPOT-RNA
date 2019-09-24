@@ -1,0 +1,36 @@
+bpRNA: Large-scale Automated Annotation and Analysis of RNA Secondary Structure
+
+ABSTRACT
+
+While RNA secondary structure prediction from sequence data has made remarkable progress, there is a need for improved strategies for annotating the features of RNA secondary structures. Here we present bpRNA, a novel annotation tool capable of parsing RNA structures, including complex pseudoknot-containing RNAs, to yield an objective, precise, compact, unambiguous, easily-interpretable description of all loops, stems, and pseudoknots, along with the positions, sequence, and flanking base pairs of each such structural feature. We also introduce several new informative representations of RNA structure types to improve structure visualization and interpretation. 
+
+We have used bpRNA to generate a web-accessible meta-database, "bpRNA-1m", of over 100,000 single-molecule, known secondary structures available at http://bpRNA.cgrb.oregonstate.edu. This is both more fully and accurately annotated and over 20-times larger than existing databases.  We use a subset of the database with highly similar (≥90% identical) sequences filtered out to report on statistical trends in sequence, flanking base pairs, and length. Both the bpRNA method and the bpRNA-1m database will be valuable resources both for specific analysis of individual RNA molecules and large-scale analyses such as are useful for updating RNA energy parameters for computational thermodynamic predictions, improving machine learning models for structure prediction, and for benchmarking structure-prediction algorithms. 
+
+###############################################################################
+
+The code is available here as a perl script called "bpRNA.pl". To use the bpRNA script, one needs a bpseq file or dot-bracket file as input.It should automatically detect input file format. The output of the bpRNA is a "structure type" file with all the details on segments, stems, hairpins, bulges, internal loops, multiloops, and pseudoknots. The structure type file has the same filebase as the input, and with the extension ".st". Moreover, bpRNA provides efficient dotbracket notations and other structural representations. Here is an example on how the bpRNA.pl can be run and the results:
+
+$ perl bpRNA.pl bpRNA_PDB_650.bpseq 
+
+The output is bpRNA_PDB_650.st. Alternatively, a dotbracket can be provided as input:
+
+$ perl bpRNA.pl bpRNA_PDB_650.dbn
+
+This produces the same output. By convention, we include all base pairs from the bpseq file in the dot-bracket output and vice versa, so that the two can be easily converted from one to the other. 
+
+The only dependency for bpRNA is the perl module Graph.pm, available through CPAN. 
+
+In addition, we provide all the scripts necessary to re-create bpRNA-1m. The following scripts and sql files allow one to either load the MySQL database, or to create the tables used in bpRNA-1m. 
+
+bpRNA_1m/bpRNA_1m_README
+bpRNA_1m/bpRNA_1m_DatabaseDiagram.pdf
+bpRNA_1m/Load_bpRNA_1m_Mysql_Part1.zip
+bpRNA_1m/Load_bpRNA_1m_Mysql_Part2.zip
+bpRNA_1m/Load_bpRNA_1m_Perl .zip
+
+bpRNA_1m/Create_bpRNA_1m:
+	bpRNA_1m_Create_README
+	bpRNA_1m/Create_bpRNA_1m.zip
+	bpRNA_1m_CreateTablesScript.pl*
+	bpRNA_1m_CreateTablesScript.sql
+

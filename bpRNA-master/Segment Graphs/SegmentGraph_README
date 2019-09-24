@@ -1,0 +1,15 @@
+Draw Segment Graph
+################################################################
+
+Using the following perl script along with the RNA bpseq file will draw 3 different graph in .svg format. If the sequence contains pseduoknot, the script will draw one segment graph for the whole structure including the pseudoknot, second segment graph assuming the pseudoknot is removed, and the third graph for pseudoknots only. For example running the following code 
+ 
+$ perl drawSegmentGraphs.pl bpRNA_RFAM_34891.bpseq
+
+will generate: 
+    1) bpRNA_RFAM_34891_all_SegGraph.svg 
+    2) bpRNA_RFAM_34891_pkf_SegGraph.svg
+    3) bpRNA_RFAM_34891_PKGraph.svg 
+
+Another example is the segment graphs for bpRNA_PDB_650 that are provided here by running:
+
+ $ perl drawSegmentGraphs.pl bpRNA_PDB_650.bpseq

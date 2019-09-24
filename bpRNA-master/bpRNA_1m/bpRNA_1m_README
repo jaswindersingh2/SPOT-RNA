@@ -1,0 +1,14 @@
+General information about bpRNA(1m) database
+############################################################################
+
+- bpRNA-1m consists of 102,318 RNA structures from seven different sources. 
+
+- The database scripts to create and load data are available in 2 formats: Mysql and Perl. 
+
+- To use the perl script, you need to set up your username and password to bpRNA-1m database and add it to the script in the placeholders for username and password.
+
+- The database contains all the structural details that generated with bpRNA algorithm
+
+- The database diagram also is included to represent all the tables, fields, and their relations. 
+
+- To download other files like fasta, bpseq, CT, dotbracket, Structure arrays, and structure types you can use the download button on http://bprna.cgrb.oregonstate.edu/index.html after a simple search. 
