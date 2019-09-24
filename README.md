@@ -60,6 +60,8 @@ python3 SPOT-RNA.py  --inputs sample_inputs/batch_seq.fasta  --outputs 'outputs/
 ```
 
 **To run on GPU:**
+
+SPOT-RNA can be run on GPU by setting '--GPU' argument to GPU number in the system. Specify '0' if only single GPU available. Running SPOT-RNA on GPU reduce computation time  of prediction by almost 15 times.
 ```
 python3 SPOT-RNA.py  --inputs sample_inputs/batch_seq.fasta  --outputs 'outputs/' --GPU 0
 ```
