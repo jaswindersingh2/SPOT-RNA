@@ -6,6 +6,7 @@ import argparse
 from utils import create_tfr_files, prob_to_secondary_structure
 import time
 start = time.time()
+from argparse import RawTextHelpFormatter
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--inputs', default='sample_inputs/2zzm-B.fasta', type=str, help='Path to input file in fasta format, accept multiple sequences as well in fasta format; default = ''sample_inputs/2zzm-1-B.fasta''\n', metavar='')
@@ -16,9 +17,9 @@ parser.add_argument('--motifs',default=False, type=bool, help='Set this to "True
 #parser.add_argument('--NC',default=True, type=bool, help='Set this to "False" to predict only canonical pairs; default = True\n', metavar='')
 args = parser.parse_args()
 
-create_tfr_files(args.input_seq)
+create_tfr_files(args.inputs)
 
-with open(args.input_seq) as file:
+with open(args.inputs) as file:
     input_data = [line.strip() for line in file.read().splitlines() if line.strip()]
 
 count = int(len(input_data)/2)
@@ -81,9 +82,9 @@ RNA_ids = [i for i in list(outputs.keys())]
 ensemble_outputs = {}
 
 print('\nPost Processing and Saving Output')
-for i in tqdm(RNA_ids):
+for i in RNA_ids:
     ensemble_outputs[i] = np.mean(outputs[i],0)
-    prob_to_secondary_structure(ensemble_outputs[i], mask[i], sequences[i], i, non_canonical=args.non_canonical, save_result_path=args.output_dir)
+    prob_to_secondary_structure(ensemble_outputs[i], mask[i], sequences[i], i, args)
 
 print('\nFinished!')
 end = time.time()
