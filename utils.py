@@ -299,9 +299,9 @@ def prob_to_secondary_structure(ensemble_outputs, label_mask, seq, name, args):
 
     if args.motifs:
         try:
-            subprocess.Popen(["perl", "bpRNA-master/bpRNA.pl", args.outputs + name + '.bpseq'])
-            subprocess.call(["mv", name +'.st', args.outputs])
+            os.chdir(args.outputs)
+            subprocess.Popen(["perl", "../bpRNA-master/bpRNA.pl", args.outputs + name + '.bpseq'])
         except:
-            print('Unable to run bpRNA script;\nplease refer to ""https://github.com/hendrixlab/bpRNA/"" for system requirments to use VARNA')
+            print('Unable to run bpRNA script;\nplease refer to ""https://github.com/hendrixlab/bpRNA/"" for system requirments to use bpRNA')
 
     return
