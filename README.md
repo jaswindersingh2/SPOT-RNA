@@ -60,12 +60,19 @@ For batch of sequences:
 python3 SPOT-RNA.py  --inputs sample_inputs/batch_seq.fasta  --outputs 'outputs/'
 ```
 
-To get 2D plots of predicted secondary structure:
-2D plots of SPOT-RNA output are generated using VARNA[3] tool. To use this tool, please make sure Java plugin version 1.6 is installed in system. Please refer to http://varna.lri.fr/ for more detailed information about this tool.   
+2D plots of predicted secondary structure:
+To get the 2D plots of SPOT-RNA output, VARNA[3] tool is used. To run this tool, please make sure Java plugin version 1.6 is installed in the system. Please refer to http://varna.lri.fr/ for more detailed information about this tool.
 ```
 python3 SPOT-RNA.py  --inputs sample_inputs/single_seq.fasta  --outputs 'outputs/' --plots True
 ```
 The output of above command will generate two additional files (arc plot and 2D plot of predicted secondary structure) along '.bpseq', '.ct', and '.prob' in 'outputs' folder.
+
+Secondary structure motifs form predicted structure:
+To get the secondary structure motifs like stem, helix, loops from predicted structure, SPOT-RNA used tool from bpRNA[1]. To run this script, please make sure 'Graph.pm' module (https://metacpan.org/pod/Graph) of perl is installed in the system.  Please refer to https://github.com/hendrixlab/bpRNA for more detailed information about this tool.
+```
+python3 SPOT-RNA.py  --inputs sample_inputs/single_seq.fasta  --outputs 'outputs/' --plots True --motifs True
+```
+The output of above command will generate one additional file '.st' in 'outputs' folder.
  
 Datasets Used For Training, Validation, and Testing
 ====
