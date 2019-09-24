@@ -56,7 +56,7 @@ python3 SPOT-RNA.py  --inputs sample_inputs/single_seq.fasta  --outputs 'outputs
 
 For batch of sequences:
 ```
-python3 SPOT-RNA.py  --input_seq sample_inputs/batch_seq.fasta  --output_dir 'outputs/'
+python3 SPOT-RNA.py  --inputs sample_inputs/batch_seq.fasta  --outputs 'outputs/'
 ```
 
 and check the outputs against the SPOT-RNA files in sample directory. To specify running on GPU please set the --gpu argument.
