@@ -53,14 +53,20 @@ For single sequence:
 ```
 python3 SPOT-RNA.py  --inputs sample_inputs/single_seq.fasta  --outputs 'outputs/'
 ```
+the outputcome of above command will be three files (.bpseq, .ct, and .prob) in 'outputs' folder. '.bpseq' and '.ct' file is standard format to represent RNA seondary structure. '.prob' file consists of base-pair probability of predicted secondary structure by SPOT-RNA which can be useful for plotting PR-curve and to check the confidence of predicted base-pair.
 
 For batch of sequences:
 ```
 python3 SPOT-RNA.py  --inputs sample_inputs/batch_seq.fasta  --outputs 'outputs/'
 ```
 
-and check the outputs against the SPOT-RNA files in sample directory. To specify running on GPU please set the --gpu argument.
-
+To get 2D plots of predicted secondary structure:
+2D plots of SPOT-RNA output are generated using VARNA[3] tool. To use this tool, please make sure Java plugin version 1.6 is installed in system. Please refer to http://varna.lri.fr/ for more detailed information about this tool.   
+```
+python3 SPOT-RNA.py  --inputs sample_inputs/single_seq.fasta  --outputs 'outputs/' --plots True
+```
+The output of above command will generate two additional files (arc plot and 2D plot of predicted secondary structure) along '.bpseq', '.ct', and '.prob' in 'outputs' folder.
+ 
 Datasets Used For Training, Validation, and Testing
 ====
 
