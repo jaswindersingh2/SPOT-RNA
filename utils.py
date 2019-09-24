@@ -1,5 +1,5 @@
 import numpy as np
-import os, six, sys
+import os, six, sys, subprocess
 import tensorflow as tf
 import random
 from tqdm import tqdm
@@ -114,6 +114,29 @@ def flatten(x):
             result.append(el)
     return result
 
+def type_pairs(pairs, sequence):
+    sequence = [i.upper() for i in sequence]
+    # seq_pairs = [[sequence[i[0]],sequence[i[1]]] for i in pairs]
+
+    AU_pair = []
+    GC_pair = []
+    GU_pair = []
+    other_pairs = []
+    for i in pairs:
+        if [sequence[i[0]],sequence[i[1]]] in [["A","U"], ["U","A"]]:
+            AU_pair.append(i)
+        elif [sequence[i[0]],sequence[i[1]]] in [["G","C"], ["C","G"]]:
+            GC_pair.append(i)
+        elif [sequence[i[0]],sequence[i[1]]] in [["G","U"], ["U","G"]]:
+            GU_pair.append(i)
+        else:
+            other_pairs.append(i)
+    watson_pairs_t = AU_pair + GC_pair
+    wobble_pairs_t = GU_pair
+    other_pairs_t = other_pairs
+        # print(watson_pairs_t, wobble_pairs_t, other_pairs_t)
+    return watson_pairs_t, wobble_pairs_t, other_pairs_t
+
 # ----------------------- find multiplets pairs--------------------------------#
 def multiplets_pairs(pred_pairs):
 
@@ -162,8 +185,8 @@ def multiplets_free_bp(pred_pairs, y_pred):
     #print(L, len(pred_pairs), save_multiplets)
     return pred_pairs, save_multiplets
         
-def output_mask(seq, non_canonical=True):
-    if non_canonical:
+def output_mask(seq, NC=True):
+    if NC:
         include_pairs = ['AU', 'UA', 'GC', 'CG', 'GU', 'UG', 'CC', 'GG', 'AG', 'CA', 'AC', 'UU', 'AA', 'CU', 'GA', 'UC']
     else:
         include_pairs = ['AU', 'UA', 'GC', 'CG', 'GU', 'UG']
@@ -190,15 +213,43 @@ def ct_file_output(pairs, seq, id, save_result_path):
                       np.char.mod('%d', col5), np.char.mod('%d', col6))).T
     #os.chdir(save_result_path)
     #print(os.path.join(save_result_path, str(id[0:-1]))+'.spotrna')
-    np.savetxt(os.path.join(save_result_path, str(id))+'.ct', (temp), delimiter='\t\t\t\t', fmt="%s", header=str(len(seq)) + '\t\t\t\t' + str(id) + '\t\t\t\t' + 'SPOT-RNA output\n' , comments='')
+    np.savetxt(os.path.join(save_result_path, str(id))+'.ct', (temp), delimiter='\t\t', fmt="%s", header=str(len(seq)) + '\t\t' + str(id) + '\t\t' + 'SPOT-RNA output\n' , comments='')
 
     return
 
-def prob_to_secondary_structure(ensemble_outputs, label_mask, seq, name, non_canonical, save_result_path):
+def bpseq_file_output(pairs, seq, id, save_result_path):
+
+    col1 = np.arange(1, len(seq) + 1, 1)
+    col2 = np.array([i for i in seq])
+    #col3 = np.arange(0, len(seq), 1)
+    #col4 = np.append(np.delete(col1, 0), [0])
+    col5 = np.zeros(len(seq), dtype=int)
+
+    for i, I in enumerate(pairs):
+        col5[I[0]] = int(I[1]) + 1
+        col5[I[1]] = int(I[0]) + 1
+    #col6 = np.arange(1, len(seq) + 1, 1)
+    temp = np.vstack((np.char.mod('%d', col1), col2, np.char.mod('%d', col5))).T
+    #os.chdir(save_result_path)
+    #print(os.path.join(save_result_path, str(id[0:-1]))+'.spotrna')
+    np.savetxt(os.path.join(save_result_path, str(id))+'.bpseq', (temp), delimiter=' ', fmt="%s", header='#' + str(id) , comments='')
+
+    return
+
+def lone_pair(pairs):
+    lone_pairs = []
+    pairs.sort()
+    for i, I in enumerate(pairs):
+        if ([I[0] - 1, I[1] + 1] not in pairs) and ([I[0] + 1, I[1] - 1] not in pairs):
+            lone_pairs.append(I)
+
+    return lone_pairs
+
+def prob_to_secondary_structure(ensemble_outputs, label_mask, seq, name, args):
     #save_result_path = 'outputs'
     Threshold = 0.335
     test_output = ensemble_outputs
-    mask = output_mask(seq, non_canonical)
+    mask = output_mask(seq)
     inds = np.where(label_mask == 1)
     y_pred = np.zeros(label_mask.shape)
     for i in range(test_output.shape[0]):
@@ -216,11 +267,41 @@ def prob_to_secondary_structure(ensemble_outputs, label_mask, seq, name, non_can
     pred_pairs = [i for I, i in enumerate(seq_pairs) if outputs_T[I]]
     pred_pairs = [i[:2] for i in pred_pairs]
     pred_pairs, save_multiplets = multiplets_free_bp(pred_pairs, y_pred)
-    # bad_pairs = hair_pin_assumption(pred_pairs)
-    # pred_pairs = [i for i in pred_pairs if i not in delete_pairs]   # remove triplets
-    # pred_pairs = [i for i in pred_pairs if i not in bad_pairs]     # remove not follow hair pin assumption
-    ct_file_output(pred_pairs, seq, name, save_result_path)
-    np.savetxt(save_result_path + '/'+ name +'.prob', y_pred, delimiter='\t')
+    
+    watson_pairs, wobble_pairs, noncanonical_pairs = type_pairs(pred_pairs, seq)
+    lone_bp = lone_pair(pred_pairs)
 
+    tertiary_bp = save_multiplets + noncanonical_pairs + lone_bp
+    tertiary_bp = [list(x) for x in set(tuple(x) for x in tertiary_bp)]
+
+    str_tertiary = []
+    for i,I in enumerate(tertiary_bp):
+        if i==0: 
+            str_tertiary += ('(' + str(I[0]+1) + ',' + str(I[1]+1) + '):color=""#FFFF00""')
+        else:
+            str_tertiary += (';(' + str(I[0]+1) + ',' + str(I[1]+1) + '):color=""#FFFF00""')   
+        
+    tertiary_bp = ''.join(str_tertiary) 
+    #with open(args.outputs + "multiplets_bp.txt", "w") as f:
+    #    f.write(multiplets_bp)
+    #print(multiplets_bp)
+
+    ct_file_output(pred_pairs, seq, name, args.outputs)
+    bpseq_file_output(pred_pairs, seq, name, args.outputs)
+    np.savetxt(args.outputs + '/'+ name +'.prob', y_pred, delimiter='\t')
     
-    
+    if args.plots:
+        try:
+            subprocess.Popen(["java", "-cp", "VARNAv3-93.jar", "fr.orsay.lri.varna.applications.VARNAcmd", '-i', args.outputs + name + '.ct', '-o', args.outputs + name + '_radiate.png', '-algorithm', 'radiate', '-resolution', '8.0', '-bpStyle', 'lw', '-auxBPs', tertiary_bp])
+            subprocess.Popen(["java", "-cp", "VARNAv3-93.jar", "fr.orsay.lri.varna.applications.VARNAcmd", '-i', args.outputs + name + '.ct', '-o', args.outputs + name + '_line.png', '-algorithm', 'line', '-resolution', '8.0', '-bpStyle', 'lw', '-auxBPs', tertiary_bp])
+        except:
+            print('Unable to generate 2D plots;\nplease refer to ""http://varna.lri.fr/"" for system requirments to use VARNA')	
+
+    if args.motifs:
+        try:
+            subprocess.Popen(["perl", "bpRNA-master/bpRNA.pl", args.outputs + name + '.bpseq'])
+            subprocess.call(["mv", name +'.st', args.outputs])
+        except:
+            print('Unable to run bpRNA script;\nplease refer to ""https://github.com/hendrixlab/bpRNA/"" for system requirments to use VARNA')
+
+    return
