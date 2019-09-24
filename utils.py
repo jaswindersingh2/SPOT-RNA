@@ -295,13 +295,13 @@ def prob_to_secondary_structure(ensemble_outputs, label_mask, seq, name, args):
             subprocess.Popen(["java", "-cp", "VARNAv3-93.jar", "fr.orsay.lri.varna.applications.VARNAcmd", '-i', args.outputs + name + '.ct', '-o', args.outputs + name + '_radiate.png', '-algorithm', 'radiate', '-resolution', '8.0', '-bpStyle', 'lw', '-auxBPs', tertiary_bp])
             subprocess.Popen(["java", "-cp", "VARNAv3-93.jar", "fr.orsay.lri.varna.applications.VARNAcmd", '-i', args.outputs + name + '.ct', '-o', args.outputs + name + '_line.png', '-algorithm', 'line', '-resolution', '8.0', '-bpStyle', 'lw', '-auxBPs', tertiary_bp])
         except:
-            print('Unable to generate 2D plots;\nplease refer to ""http://varna.lri.fr/"" for system requirments to use VARNA')	
+            print('\nUnable to generate 2D plots;\nplease refer to "http://varna.lri.fr/" for system requirments to use VARNA')	
 
     if args.motifs:
         try:
             os.chdir(args.outputs)
-            subprocess.Popen(["perl", "../bpRNA-master/bpRNA.pl", args.outputs + name + '.bpseq'])
+            p = subprocess.Popen(['perl', '../bpRNA-master/bpRNA.pl', name + '.bpseq'])
         except:
-            print('Unable to run bpRNA script;\nplease refer to ""https://github.com/hendrixlab/bpRNA/"" for system requirments to use bpRNA')
-
+            print('\nUnable to run bpRNA script;\nplease refer to "https://github.com/hendrixlab/bpRNA/" for system requirments to use bpRNA')
+        os.chdir('../')
     return
