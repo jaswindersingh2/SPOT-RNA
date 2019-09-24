@@ -8,10 +8,12 @@ import time
 start = time.time()
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--input_seq', help='name of input file')
-parser.add_argument('--non_canonical',default=True, help='whether to include non-canoical pairs or not')
-parser.add_argument('--output_dir',default='outputs', type=str, help='specify path to save results')
-parser.add_argument('--gpu', default=-1, type=int, help='Which GPU to use')
+parser.add_argument('--inputs', default='sample_inputs/2zzm-B.fasta', type=str, help='Path to input file in fasta format, accept multiple sequences as well in fasta format; default = ''sample_inputs/2zzm-1-B.fasta''\n', metavar='')
+parser.add_argument('--outputs',default='outputs/', type=str, help='Path to output files; SPOT-RNA outputs at least three files .ct, .bpseq, and .prob files; default = ''outputs/\n', metavar='')
+parser.add_argument('--gpu', default=-1, type=int, help='To run on GPU, specifiy GPU number. If only one GPU in computer specifiy 0; default = -1 (no GPU)\n', metavar='')
+parser.add_argument('--plots',default=False, type=bool, help='Set this to "True" to get the 2D plots of predicted secondary structure by SPOT-RNA; default = False\n', metavar='')
+parser.add_argument('--motifs',default=False, type=bool, help='Set this to "True" to get the motifs of predicted secondary structure by SPOT-RNA; default = False\n', metavar='')
+#parser.add_argument('--NC',default=True, type=bool, help='Set this to "False" to predict only canonical pairs; default = True\n', metavar='')
 args = parser.parse_args()
 
 create_tfr_files(args.input_seq)
