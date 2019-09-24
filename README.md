@@ -45,7 +45,7 @@ To install:
 5. `virtualenv -p python3 venv && source ./venv/bin/activate || conda create -n venv python=3.6 anaconda && source activate venv` (optional)
 6. `pip install -r requirements.txt`
 
-To run the SPOT-RNA Scripts
+To run the SPOT-RNA
 -----
 
 **For single sequence:**
