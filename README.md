@@ -56,22 +56,19 @@ python3 SPOT-RNA.py  --inputs sample_inputs/single_seq.fasta  --outputs 'outputs
 ```
 the outputcome of above command will be three files (.bpseq, .ct, and .prob) in 'outputs' folder. '.bpseq' and '.ct' file is standard format to represent RNA seondary structure. '.prob' file consists of base-pair probability of predicted secondary structure by SPOT-RNA which can be useful for plotting PR-curve and to check the confidence of predicted base-pair.
 
-For batch of sequences:
---
+**For batch of sequences:**
 ```
 python3 SPOT-RNA.py  --inputs sample_inputs/batch_seq.fasta  --outputs 'outputs/'
 ```
 
-2D plots of predicted secondary structure:
---
+**2D plots of predicted secondary structure:**
 To get the 2D plots of SPOT-RNA output, VARNA[3] tool is used. To run this tool, please make sure Java plugin version 1.6 is installed in the system. Please refer to http://varna.lri.fr/ for more detailed information about this tool.
 ```
 python3 SPOT-RNA.py  --inputs sample_inputs/single_seq.fasta  --outputs 'outputs/' --plots True
 ```
 The output of above command will generate two additional files (arc plot and 2D plot of predicted secondary structure) along '.bpseq', '.ct', and '.prob' in 'outputs' folder.
 
-Secondary structure motifs form predicted structure:
---
+**Secondary structure motifs form predicted structure:**
 To get the secondary structure motifs like stem, helix, loops from predicted structure, SPOT-RNA used tool from bpRNA[1]. To run this script, please make sure 'Graph.pm' module (https://metacpan.org/pod/Graph) of perl is installed in the system.  Please refer to https://github.com/hendrixlab/bpRNA for more detailed information about this tool.
 ```
 python3 SPOT-RNA.py  --inputs sample_inputs/single_seq.fasta  --outputs 'outputs/' --plots True --motifs True
