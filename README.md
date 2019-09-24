@@ -61,14 +61,22 @@ python3 SPOT-RNA.py  --inputs sample_inputs/batch_seq.fasta  --outputs 'outputs/
 
 **To run on GPU:**
 
-SPOT-RNA can be run on GPU by setting '--GPU' argument to GPU number in the system. Specify '0' if only single GPU available. Running SPOT-RNA on GPU reduce computation time  of prediction by almost 15 times.
+SPOT-RNA can be run on GPU by setting '--GPU' argument to GPU's number in the system. Specify '0' if only single GPU available. Running SPOT-RNA on GPU reduce computation time  of prediction by almost 15 times.
 ```
 python3 SPOT-RNA.py  --inputs sample_inputs/batch_seq.fasta  --outputs 'outputs/' --GPU 0
 ```
 
 **2D plots of predicted secondary structure:**
 
-To get the 2D plots of SPOT-RNA output, VARNA[3] tool is used. To run this tool, please make sure Java plugin version >= 1.6 is installed in the system. Please refer to http://varna.lri.fr/ for more detailed information about this tool.
+To get the 2D plots of SPOT-RNA output, VARNA[3] tool is used. Please refer to http://varna.lri.fr/ for detailed information about this tool. To run this tool, please make sure Java plugin version >= 1.6 is installed in the system. To check whether java is installed or not use following command:
+```
+java -version
+```
+If java is not installed above command will not shown anything. To install java in the system following command can be used.
+```
+sudo apt install default-jre && sudo apt install openjdk-11-jre-headless
+```
+After java install, the following command can be used to get SPOT-RNA output with 2D plots of predicted secondary structure.
 ```
 python3 SPOT-RNA.py  --inputs sample_inputs/single_seq.fasta  --outputs 'outputs/' --plots True
 ```
@@ -76,7 +84,16 @@ The output of above command will generate two additional files (arc plot and 2D 
 
 **Secondary structure motifs from predicted structure:**
 
-To get the secondary structure motifs like stem, helix, loops from predicted structure, SPOT-RNA used tool from bpRNA[1]. To run this script, please make sure 'Graph.pm' module (https://metacpan.org/pod/Graph) of perl is installed in the system.  Please refer to https://github.com/hendrixlab/bpRNA for more detailed information about this tool.
+To get the secondary structure motifs like stem, helix, loops from predicted structure, SPOT-RNA used tool from bpRNA[1].  Please refer to https://github.com/hendrixlab/bpRNA for detailed information about this tool. To run this script, please make sure 'Graph.pm' module (https://metacpan.org/pod/Graph) of perl is installed in the system. To check whether 'Graph' module already installed or not, use the following command:
+```
+perl -e 'use Graph;'
+```
+If the output of this command looks like 'Can't locate Graph.pm in @INC (you may need to install the Graph module) (@INC contains: .........' then the following command can be used to install this module:
+```
+sudo apt install cpanminus && sudo cpanm Graph
+```
+
+After 'Graph' module install, the following command can be used to get SPOT-RNA output with secondary structure motifs:
 ```
 python3 SPOT-RNA.py  --inputs sample_inputs/single_seq.fasta  --outputs 'outputs/' --plots True --motifs True
 ```
