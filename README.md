@@ -51,7 +51,7 @@ To run the SPOT-RNA Scripts
 
 For single sequence:
 ```
-python3 SPOT-RNA.py  --input_seq sample_inputs/single_seq.fasta  --output_dir 'outputs/'
+python3 SPOT-RNA.py  --inputs sample_inputs/single_seq.fasta  --outputs 'outputs/'
 ```
 
 For batch of sequences:
