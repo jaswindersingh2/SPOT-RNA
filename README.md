@@ -68,7 +68,7 @@ python3 SPOT-RNA.py  --inputs sample_inputs/batch_seq.fasta  --outputs 'outputs/
 
 **2D plots of predicted secondary structure:**
 
-To get the 2D plots of SPOT-RNA output, VARNA[3] tool is used. To run this tool, please make sure Java plugin version 1.6 is installed in the system. Please refer to http://varna.lri.fr/ for more detailed information about this tool.
+To get the 2D plots of SPOT-RNA output, VARNA[3] tool is used. To run this tool, please make sure Java plugin version >= 1.6 is installed in the system. Please refer to http://varna.lri.fr/ for more detailed information about this tool.
 ```
 python3 SPOT-RNA.py  --inputs sample_inputs/single_seq.fasta  --outputs 'outputs/' --plots True
 ```
