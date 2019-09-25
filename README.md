@@ -30,9 +30,8 @@ USAGE
 
 Installation:
 ----
-It is recommended to use a [virtual environment](http://virtualenvwrapper.readthedocs.io/en/latest/install.html) for installation.
 
-To install:
+To install SPOT-RNA and it's dependencies following commands can be used in terminal:
 
 1. `git clone https://github.com/jaswindersingh2/SPOT-RNA.git`
 2. `cd SPOT-RNA`
