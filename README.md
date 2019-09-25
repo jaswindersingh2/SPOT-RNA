@@ -38,8 +38,8 @@ It is recommended to use a [virtual environment](http://virtualenvwrapper.readth
 
 To install:
 
-1. `$ git clone https://github.com/jaswindersingh2/SPOT-RNA.git`
-2. `$ cd SPOT-RNA`
+1. `git clone https://github.com/jaswindersingh2/SPOT-RNA.git`
+2. `cd SPOT-RNA`
 3. `wget 'https://www.dropbox.com/s/dsrcf460nbjqpxa/SPOT-RNA-models.tar.gz' || wget 'https://app.nihaocloud.com/f/fbf3315a91d542c0bdc2/?dl=1'`
 4. `tar -xvzf SPOT-RNA-models.tar.gz && rm SPOT-RNA-models.tar.gz`
 5. `virtualenv -p python3 venv && source ./venv/bin/activate || conda create -n venv python=3.6 anaconda && source activate venv` (optional)
