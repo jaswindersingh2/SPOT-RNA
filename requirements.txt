@@ -1,4 +1,3 @@
-tensorflow>=1.12
 pandas
 numpy==1.16.4
 tqdm
