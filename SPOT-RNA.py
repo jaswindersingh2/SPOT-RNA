@@ -17,6 +17,9 @@ parser.add_argument('--motifs',default=False, type=bool, help='Set this to "True
 #parser.add_argument('--NC',default=True, type=bool, help='Set this to "False" to predict only canonical pairs; default = True\n', metavar='')
 args = parser.parse_args()
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+
 create_tfr_files(args.inputs)
 
 with open(args.inputs) as file:
@@ -30,7 +33,7 @@ for i,I in enumerate(ids):
     sequences[I] = input_data[2*i+1].replace(" ", "")
 
 os.environ["CUDA_VISIBLE_DEVICES"]= str(args.gpu)
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+#os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 NUM_MODELS = 5
 
 test_loc = ["input_tfr_files/test_data.tfrecords"]
