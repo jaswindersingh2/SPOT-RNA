@@ -19,7 +19,7 @@ SPOT-RNA predictor requires only a standard computer with around 16 GB RAM to su
 Software Requirments:
 ----
 * [Python3](https://docs.python-guide.org/starting/install3/linux/)
-* [virtualenv](https://virtualenv.pypa.io/en/latest/installation/) or [Anaconda] (https://anaconda.org/anaconda/virtualenv)
+* [virtualenv](https://virtualenv.pypa.io/en/latest/installation/) or [Anaconda](https://anaconda.org/anaconda/virtualenv)
 * [CUDA 10.0](https://developer.nvidia.com/cuda-10.0-download-archive) (Optional If using GPU)
 * [cuDNN (>= 7.4.1)](https://developer.nvidia.com/cudnn) (Optional If using GPU)
 
