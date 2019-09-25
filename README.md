@@ -18,7 +18,7 @@ SPOT-RNA predictor requires only a standard computer with around 16 GB RAM to su
 
 Software Requirments:
 ----
-* [TensorFlow (v1.12) ](https://www.tensorflow.org/install/) 
+* [TensorFlow (>=v1.12) ](https://www.tensorflow.org/install/) 
 * [Python3](https://docs.python-guide.org/starting/install3/linux/)
 * pandas
 * numpy
