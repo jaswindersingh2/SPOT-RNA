@@ -1,4 +1,3 @@
-tensorflow-gpu
 pandas
 numpy==1.16.4
 tqdm
