@@ -23,7 +23,7 @@ Software Requirments:
 * [CUDA 10.0](https://developer.nvidia.com/cuda-10.0-download-archive) (Optional If using GPU)
 * [cuDNN (>= 7.4.1)](https://developer.nvidia.com/cudnn) (Optional If using GPU)
 
-SPOT-RNA has been tested on Ubuntu 16.04 operating system.
+SPOT-RNA has been tested on Ubuntu 14.04, 16.04, and 18.04 operating systems.
 
 USAGE
 ====
