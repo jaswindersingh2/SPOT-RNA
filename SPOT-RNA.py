@@ -18,7 +18,8 @@ parser.add_argument('--motifs',default=False, type=bool, help='Set this to "True
 args = parser.parse_args()
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+if args.gpu != -1:
+    tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 create_tfr_files(args.inputs)
 
