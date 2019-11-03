@@ -1,4 +1,4 @@
-SPOT-RNA: RNA Secondary Structure Prediction using an Ensemble of Two-dimensional Recurrent and Residual Convolutional Neural Networks and Transfer Learning.
+SPOT-RNA: RNA Secondary Structure Prediction using an Ensemble of Two-dimensional Deep Neural Networks and Transfer Learning.
 ====
 
 OVERVIEW
@@ -111,7 +111,7 @@ References
 ====
 If you use SPOT-RNA for your research please cite the following papers:
 ----
-Singh, J., Hanson, J., Paliwal, and Zhou, Y., 2019. SPOT-RNA: RNA Secondary Structure Prediction using an Ensemble of Two-dimensional Recurrent and Residual Convolutional Neural Networks and Transfer Learning (Under Review).
+Singh, J., Hanson, J., Paliwal, K., and Zhou, Y., 2019. SPOT-RNA: RNA Secondary Structure Prediction using an Ensemble of Two-dimensional Deep Neural Networks and Transfer Learning (Under Review).
 
 Other references:
 ----
