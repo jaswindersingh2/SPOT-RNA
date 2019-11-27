@@ -111,7 +111,7 @@ References
 ====
 If you use SPOT-RNA for your research please cite the following papers:
 ----
-Singh, J., Hanson, J., Paliwal, K. et al. RNA secondary structure prediction using an ensemble of two-dimensional deep neural networks and transfer learning. Nat Commun 10, 5407 (2019) doi:10.1038/s41467-019-13395-9
+Singh, J., Hanson, J., Paliwal, K., Zhou, Y. RNA secondary structure prediction using an ensemble of two-dimensional deep neural networks and transfer learning. Nat Commun 10, 5407 (2019) doi:10.1038/s41467-019-13395-9
 
 Other references:
 ----
