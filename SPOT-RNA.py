@@ -44,17 +44,17 @@ def sigmoid(x):
     return 1/(1+np.exp(-np.array(x, dtype=np.float128)))
 
 for MODEL in range(NUM_MODELS):
-    config = tf.ConfigProto()
+    config = tf.compat.v1.ConfigProto()
     #config.gpu_options.allow_growth = True
     config.allow_soft_placement=True
     config.log_device_placement=False
     #session_conf = tf.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
     #sess = tf.Session(config=session_conf)
     print('\nPredicting for SPOT-RNA model '+str(MODEL))
-    with tf.Session(config=config) as sess:
-        saver = tf.train.import_meta_graph('SPOT-RNA-models'+'/model'+str(MODEL)+'.meta')
+    with tf.compat.v1.Session(config=config) as sess:
+        saver = tf.compat.v1.train.import_meta_graph('SPOT-RNA-models'+'/model'+str(MODEL)+'.meta')
         saver.restore(sess,'SPOT-RNA-models'+'/model'+str(MODEL))
-        graph = tf.get_default_graph()
+        graph = tf.compat.v1.get_default_graph()
         init_test =  graph.get_operation_by_name('make_initializer_2')
         tmp_out = graph.get_tensor_by_name('output_FC/fully_connected/BiasAdd:0')
         name_tensor = graph.get_tensor_by_name('tensors_2/component_0:0')
@@ -78,7 +78,7 @@ for MODEL in range(NUM_MODELS):
             except:
                 break
         pbar.close()
-    tf.reset_default_graph()
+    tf.compat.v1.reset_default_graph()
 
 
 RNA_ids = [i for i in list(outputs.keys())]
