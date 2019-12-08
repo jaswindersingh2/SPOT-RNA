@@ -126,3 +126,8 @@ Other references:
 Licence
 ====
 Mozilla Public License 2.0
+
+
+Contact
+====
+jaswindersingh3@griffithuni.edu.au, yaoqi.zhou@griffith.edu.au
