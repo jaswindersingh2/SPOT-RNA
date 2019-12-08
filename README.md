@@ -35,7 +35,7 @@ To install SPOT-RNA and it's dependencies following commands can be used in term
 
 1. `git clone https://github.com/jaswindersingh2/SPOT-RNA.git`
 2. `cd SPOT-RNA`
-3. `wget 'https://www.dropbox.com/s/dsrcf460nbjqpxa/SPOT-RNA-models.tar.gz' || wget 'https://app.nihaocloud.com/f/fbf3315a91d542c0bdc2/?dl=1'`
+3. `wget 'https://www.dropbox.com/s/dsrcf460nbjqpxa/SPOT-RNA-models.tar.gz' || wget 'https://app.nihaocloud.com/seafhttp/files/db5c4aad-6bbc-413c-a8c9-b47df1fcb2a9/SPOT-RNA-models.tar.gz'`
 4. `tar -xvzf SPOT-RNA-models.tar.gz && rm SPOT-RNA-models.tar.gz`
 5. `virtualenv -p python3 venv && source ./venv/bin/activate || conda create -n venv python=3.6 anaconda && conda activate venv`      
 6. **To run on CPU:**<br />`pip install tensorflow==1.14.0`<br />
