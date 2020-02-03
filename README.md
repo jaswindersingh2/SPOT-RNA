@@ -101,11 +101,14 @@ Datasets Used For Training, Validation, and Testing
 ====
 
 The following datasets were used for Initial Training:
-* [bpRNA](https://www.dropbox.com/s/w3kc4iro8ztbf3m/bpRNA_dataset.zip)[1]
+* bpRNA[1]: Initial Learning (Training TR0, validation VL0, and test TS0)
+
+[Dropbox](https://www.dropbox.com/s/w3kc4iro8ztbf3m/bpRNA_dataset.zip) or [Nihao Cloud](https://app.nihaocloud.com/d/26df85ca06bc4eae8f6f/)
 
 
 The following datasets were used for Transfer Learning:
-* [PDB](https://www.dropbox.com/s/srcs1wx91qyyszp/PDB_dataset.zip)[2]
+* PDB[2]: Transfer Learning (Training TR1, validation VL1, and test TS1)
+[Dropbox](https://www.dropbox.com/s/srcs1wx91qyyszp/PDB_dataset.zip) or [Nihao Cloud](https://app.nihaocloud.com/d/0992fd6fb69b4ae6aff3/)
 
 References
 ====
