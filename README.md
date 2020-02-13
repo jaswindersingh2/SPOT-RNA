@@ -111,7 +111,7 @@ The following datasets were used for Initial Training:
 
 The following datasets were used for Transfer Learning:
 * PDB[2]: Transfer Learning (Training TR1, validation VL1, and test TS1)  
-[Dropbox](https://www.dropbox.com/s/srcs1wx91qyyszp/PDB_dataset.zip) or [Nihao Cloud](https://app.nihaocloud.com/d/0992fd6fb69b4ae6aff3/)
+[Dropbox](https://www.dropbox.com/s/sxsv7znji6jnmnb/PDB_dataset.tar.xz?dl=0) or [Nihao Cloud](https://app.nihaocloud.com/d/0992fd6fb69b4ae6aff3/)
 
 References
 ====
