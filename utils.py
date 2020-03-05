@@ -79,7 +79,7 @@ def create_tfr_files(all_seq):
     with tf.io.TFRecordWriter(path_tfrecords) as writer:
         for i in tqdm(range(len(ids))):
             name     = input_data[2*i].replace(">", "") 
-            sequence = input_data[2*i+1].replace(" ", "").replace("T", "U")
+            sequence = input_data[2*i+1].replace(" ", "").replace("T", "U").upper()
             #print(sequence[-1])
             
             #print(len(sequence), name)                
