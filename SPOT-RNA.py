@@ -30,7 +30,7 @@ count = int(len(input_data)/2)
 ids = [input_data[2*i].replace(">", "") for i in range(count)]
 sequences = {}
 for i,I in enumerate(ids):
-    sequences[I] = input_data[2*i+1].replace(" ", "").replace("T", "U")
+    sequences[I] = input_data[2*i+1].replace(" ", "").replace("T", "U").upper()
 
 os.environ["CUDA_VISIBLE_DEVICES"]= str(args.gpu)
 #os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
