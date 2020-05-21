@@ -65,10 +65,10 @@ def _bytes_feature(value):
         value = six.binary_type(value, encoding='utf-8')
     return tf.train.Feature(bytes_list=tf.train.BytesList(value=[value]))
 
-def create_tfr_files(all_seq):
+def create_tfr_files(all_seq, base_path, input_file):
 
     print('\nPreparing tfr records file for SPOT-RNA:')
-    path_tfrecords = os.path.join('input_tfr_files',"test_data"+".tfrecords")
+    path_tfrecords = os.path.join(base_path, 'input_tfr_files', input_file+'.tfrecords')
     with open(all_seq) as file:
         input_data = [line.strip() for line in file.read().splitlines() if line.strip()]
 

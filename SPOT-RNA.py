@@ -20,7 +20,10 @@ args = parser.parse_args()
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
-create_tfr_files(args.inputs)
+base_path = os.path.dirname(os.path.realpath(__file__))
+input_file = os.path.basename(args.inputs)
+
+create_tfr_files(args.inputs, base_path, input_file)
 
 with open(args.inputs) as file:
     input_data = [line.strip() for line in file.read().splitlines() if line.strip()]
@@ -36,7 +39,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]= str(args.gpu)
 #os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 NUM_MODELS = 5
 
-test_loc = ["input_tfr_files/test_data.tfrecords"]
+test_loc = [os.path.join(base_path, 'input_tfr_files', input_file+'.tfrecords')]
 
 outputs = {}
 mask = {}
