@@ -245,7 +245,7 @@ def lone_pair(pairs):
 
     return lone_pairs
 
-def prob_to_secondary_structure(ensemble_outputs, label_mask, seq, name, args):
+def prob_to_secondary_structure(ensemble_outputs, label_mask, seq, name, args, base_path):
     #save_result_path = 'outputs'
     Threshold = 0.335
     test_output = ensemble_outputs
@@ -292,15 +292,15 @@ def prob_to_secondary_structure(ensemble_outputs, label_mask, seq, name, args):
     
     if args.plots:
         try:
-            subprocess.Popen(["java", "-cp", "VARNAv3-93.jar", "fr.orsay.lri.varna.applications.VARNAcmd", '-i', args.outputs + name + '.ct', '-o', args.outputs + name + '_radiate.png', '-algorithm', 'radiate', '-resolution', '8.0', '-bpStyle', 'lw', '-auxBPs', tertiary_bp], stderr=subprocess.STDOUT, stdout=subprocess.PIPE).communicate()[0]
-            subprocess.Popen(["java", "-cp", "VARNAv3-93.jar", "fr.orsay.lri.varna.applications.VARNAcmd", '-i', args.outputs + name + '.ct', '-o', args.outputs + name + '_line.png', '-algorithm', 'line', '-resolution', '8.0', '-bpStyle', 'lw', '-auxBPs', tertiary_bp], stderr=subprocess.STDOUT, stdout=subprocess.PIPE).communicate()[0]
+            subprocess.Popen(["java", "-cp", base_path + "/VARNAv3-93.jar", "fr.orsay.lri.varna.applications.VARNAcmd", '-i', args.outputs + name + '.ct', '-o', args.outputs + name + '_radiate.png', '-algorithm', 'radiate', '-resolution', '8.0', '-bpStyle', 'lw', '-auxBPs', tertiary_bp], stderr=subprocess.STDOUT, stdout=subprocess.PIPE).communicate()[0]
+            subprocess.Popen(["java", "-cp", base_path + "VARNAv3-93.jar", "fr.orsay.lri.varna.applications.VARNAcmd", '-i', args.outputs + name + '.ct', '-o', args.outputs + name + '_line.png', '-algorithm', 'line', '-resolution', '8.0', '-bpStyle', 'lw', '-auxBPs', tertiary_bp], stderr=subprocess.STDOUT, stdout=subprocess.PIPE).communicate()[0]
         except:
             print('\nUnable to generate 2D plots;\nplease refer to "http://varna.lri.fr/" for system requirments to use VARNA')	
 
     if args.motifs:
         try:
             os.chdir(args.outputs)
-            p = subprocess.Popen(['perl', '../bpRNA-master/bpRNA.pl', name + '.bpseq'])
+            p = subprocess.Popen(['perl', base_path + '/bpRNA-master/bpRNA.pl', name + '.bpseq'])
         except:
             print('\nUnable to run bpRNA script;\nplease refer to "https://github.com/hendrixlab/bpRNA/" for system requirments to use bpRNA')
         os.chdir('../')

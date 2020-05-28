@@ -55,8 +55,8 @@ for MODEL in range(NUM_MODELS):
     #sess = tf.Session(config=session_conf)
     print('\nPredicting for SPOT-RNA model '+str(MODEL))
     with tf.compat.v1.Session(config=config) as sess:
-        saver = tf.compat.v1.train.import_meta_graph('SPOT-RNA-models'+'/model'+str(MODEL)+'.meta')
-        saver.restore(sess,'SPOT-RNA-models'+'/model'+str(MODEL))
+        saver = tf.compat.v1.train.import_meta_graph(os.path.join(base_path, 'SPOT-RNA-models', 'model' + str(MODEL) + '.meta'))
+        saver.restore(sess,os.path.join(base_path, 'SPOT-RNA-models', 'model' + str(MODEL)))
         graph = tf.compat.v1.get_default_graph()
         init_test =  graph.get_operation_by_name('make_initializer_2')
         tmp_out = graph.get_tensor_by_name('output_FC/fully_connected/BiasAdd:0')
@@ -90,7 +90,7 @@ ensemble_outputs = {}
 print('\nPost Processing and Saving Output')
 for i in RNA_ids:
     ensemble_outputs[i] = np.mean(outputs[i],0)
-    prob_to_secondary_structure(ensemble_outputs[i], mask[i], sequences[i], i, args)
+    prob_to_secondary_structure(ensemble_outputs[i], mask[i], sequences[i], i, args, base_path)
 
 print('\nFinished!')
 end = time.time()
