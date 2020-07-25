@@ -1,23 +1,43 @@
-SPOT-RNA: RNA Secondary Structure Prediction using an Ensemble of Two-dimensional Deep Neural Networks and Transfer Learning.
+SPOT-RNA: *RNA Secondary Structure Prediction using an Ensemble of Two-dimensional Deep Neural Networks and Transfer Learning.*
 ====
 
-OVERVIEW
-====
-SPOT-RNA is a single sequence-based RNA secondary structure predictor. It used an ensemble of deep learning methods (ResNets and BiLSTM) (Figure 1) to infer the base-pair probability of nucleotides within the sequence. SPOT-RNA was initially trained on non-redundant bpRNA[1] dataset in which secondary structure was derived using comparative sequence analysis. After initial training, transfer learning was used to further train SPOT-RNA on high resolution non-redundant structured RNAs from Protein Data Bank (PDB)[2]. SPOT-RNA can predict all kind of base-pair including pseudoknots, non-canonical, lone, and triplets base-pairs. SPOT-RNA is also available as web-server at http://sparks-lab.org/jaswinder/server/SPOT-RNA/. The web-server provides an arc diagram and a 2D diagram of predicted RNA secondary the structure through Visualization Applet for RNA (VARNA)[3] tool along with a dot plot of SPOT-RNA predicted base-pair
-probabilities.
+Contents
+----
+  * [Introduction](#introduction)
+  * [Results](#results)
+  * [System Requirments](#system-requirments)
+  * [Installation](#installation)
+  * [Usage](#Usage)
+  * [Datasets](#datasets)
+  * [Citation guide](#citation-guide)
+  * [Licence](#licence)
+  * [Contact](#contact)
+
+Introduction
+----
+The majority of our human genome transcribes into noncoding RNAs with unknown structures and functions. Obtaining functional clues for noncoding RNAs requires accurate base-pairing or secondary-structure prediction. However, the performance of such predictions by current folding-based algorithms has been stagnated for more than a decade. Here, we propose the use of deep contextual learning (Figure 1) for base-pair prediction including those noncanonical and non-nested (pseudoknot) base pairs stabilized by tertiary interactions. Since only less than 250 nonredundant, high-resolution RNA structures are available for model training, we utilize transfer learning from a model initially trained with a recent high-quality bpRNA dataset of >10,000 nonredundant RNAs made available through comparative analysis.
 
 |![](./SPOT-RNA-architecture.png)
 |----|
 | <p align="center"> <b>Figure 1:</b> The network layout of the SPOT-RNA, where L is the sequence length of a target RNA, Act. indicates the activation function, Norm. indicates the normalization function, and PreT indicates the pretrained (initial trained) models trained on the bpRNA dataset.|
 
-SYSTEM REQUIREMENTS
-====
-Hardware Requirments:
+Results
 ----
+The
+resulting method (SPOT-RNA) achieves 94% precision at 50% sensitivity (Figure 2). Furthermore, it improves F1-score by a respective 53% and
+60% over existing techniques in predicting noncanonical and non-nested base pairs.
+
+|![](./benchmark_results.png)
+|----|
+| <p align="center"> <b>Figure 2:</b> Performance comparison of SPOT-RNA with 12 other predictors by using PR curve and boxplot on the test set TS1. **a** Precision-recall curves on the independent test set TS1 by initial training (SPOT-RNA-IT, the green dashed line), direct training (SPOT-RNA-DT, the blue dot-dashed line), and transfer learning (SPOT-RNA, the solid magenta line). Precision and sensitivity results from ten currently used predictors are also shown as labeled with open symbols for the methods accounting for pseudoknots and filled symbols for the methods not accounting for pseudoknots. CONTRAfold and CentroidFold were also shown as curves (Gold and Black) because their methods provide predicted probabilities. **b** Distribution of F1 score for individual RNAs on the independent test set TS1 given by various methods as labeled. On each box, the central mark indicates the median, and the bottom and top edges of the box indicate the 25th and 75th percentiles, respectively. The outliers are plotted individually by using the “+” symbol.|
+
+System Requirments
+----
+
+**Hardware Requirments:**
 SPOT-RNA predictor requires only a standard computer with around 16 GB RAM to support the in-memory operations for RNAs sequence length less than 500.
 
-Software Requirments:
-----
+**Software Requirments:**
 * [Python3](https://docs.python-guide.org/starting/install3/linux/)
 * [virtualenv](https://virtualenv.pypa.io/en/latest/installation/) or [Anaconda](https://anaconda.org/anaconda/virtualenv)
 * [CUDA 10.0](https://developer.nvidia.com/cuda-10.0-download-archive) (Optional If using GPU)
@@ -25,10 +45,7 @@ Software Requirments:
 
 SPOT-RNA has been tested on Ubuntu 14.04, 16.04, and 18.04 operating systems.
 
-USAGE
-====
-
-Installation:
+Installation
 ----
 
 To install SPOT-RNA and it's dependencies following commands can be used in terminal:
@@ -47,8 +64,8 @@ Either follow **virtualenv** column steps or **conda** column steps to create vi
 | 7. | *To run SPOT-RNA on CPU:*<br /> <br /> `pip install tensorflow==1.14.0` <br /> <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *or* <br /> <br />*To run SPOT-RNA on GPU:*<br /> <br /> `pip install tensorflow-gpu==1.14.0` | *To run SPOT-RNA on CPU:*<br /> <br /> `conda install tensorflow==1.14.0` <br /> <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *or* <br /> <br />*To run SPOT-RNA on GPU:*<br /> <br /> `conda install tensorflow-gpu==1.14.0` |
 | 8. | `pip install -r requirements.txt` | `while read p; do conda install --yes $p; done < requirements.txt` | 
 
-To run the SPOT-RNA
------
+Usage
+----
 
 **For single sequence:**
 ```
@@ -101,8 +118,8 @@ python3 SPOT-RNA.py  --inputs sample_inputs/single_seq.fasta  --outputs 'outputs
 ```
 The output of the above command will generate one additional file '.st' in 'outputs' folder.
 
-Datasets Used For Training, Validation, and Testing
-====
+Datasets
+----
 
 The following datasets were used for Initial Training:
 * bpRNA[1]: Initial Learning (Training TR0, validation VL0, and test TS0)  
@@ -113,27 +130,26 @@ The following datasets were used for Transfer Learning:
 * PDB[2]: Transfer Learning (Training TR1, validation VL1, and test TS1)  
 [Dropbox](https://www.dropbox.com/s/vnq0k9dg7vynu3q/PDB_dataset.zip?dl=0) or [Nihao Cloud](https://app.nihaocloud.com/f/d61638e03bc5484f8f83/)
 
-References
-====
-If you use SPOT-RNA for your research please cite the following papers:
+Citation guide
 ----
+
+**If you use SPOT-RNA for your research please cite the following papers:**
+
 Singh, J., Hanson, J., Paliwal, K., Zhou, Y. RNA secondary structure prediction using an ensemble of two-dimensional deep neural networks and transfer learning. Nat Commun 10, 5407 (2019) https://doi.org/10.1038/s41467-019-13395-9
 
-Other references:
-----
+**If you use SPOT-RNA data sets and/or post-processing (2D plots, structural motifs from SPOT-RNA output) pipeline, please consider citing the following papers:**
+
 [1] Padideh Danaee, Mason Rouches, Michelle Wiley, Dezhong Deng, Liang Huang, David Hendrix, bpRNA: large-scale automated annotation and analysis of RNA secondary structure, Nucleic Acids Research, Volume 46, Issue 11, 20 June 2018, Pages 5381–5394, https://doi.org/10.1093/nar/gky285
 
-[2] H.M. Berman, J. Westbrook, Z. Feng, G. Gilliland, T.N. Bhat, H. Weissig, I.N. Shindyalov, P.E. Bourne.
-(2000) The Protein Data Bank Nucleic Acids Research, 28: 235-242.
+[2] H.M. Berman, J. Westbrook, Z. Feng, G. Gilliland, T.N. Bhat, H. Weissig, I.N. Shindyalov, P.E. Bourne. (2000) The Protein Data Bank Nucleic Acids Research, 28: 235-242.
 
 [3]  VARNA: Interactive drawing and editing of the RNA secondary structure Kévin Darty, Alain Denise and Yann Ponty Bioinformatics, pp. 1974-1975, Vol. 25, no. 15, 2009 
 
-
 Licence
-====
+----
 Mozilla Public License 2.0
 
 
 Contact
-====
+----
 jaswinder.singh3@griffithuni.edu.au, yaoqi.zhou@griffith.edu.au
