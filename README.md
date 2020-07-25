@@ -25,7 +25,7 @@ Results
 ----
 The
 resulting method (SPOT-RNA) achieves 94% precision at 50% sensitivity (Figure 2). Furthermore, it improves F1-score by a respective 53% and
-60% over existing techniques in predicting noncanonical and non-nested base pairs. SPOT-RNA is also available as web-server at http://sparks-lab.org/jaswinder/server/SPOT-RNA/. The web-server provides an arc diagram and a 2D diagram of predicted RNA secondary the structure through Visualization Applet for RNA (VARNA)[3] tool along with a dot plot of SPOT-RNA predicted base-pair probabilities.
+60% over existing techniques in predicting noncanonical and non-nested base pairs. SPOT-RNA is also available as web-server at https://sparks-lab.org/server/spot-rna/. The web-server provides an arc diagram and a 2D diagram of predicted RNA secondary the structure through Visualization Applet for RNA (VARNA)[3] tool along with a dot plot of SPOT-RNA predicted base-pair probabilities.
 
 |![](./docs/benchmark_results.png)
 |----|
