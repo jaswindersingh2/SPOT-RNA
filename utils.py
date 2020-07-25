@@ -282,24 +282,26 @@ def prob_to_secondary_structure(ensemble_outputs, label_mask, seq, name, args, b
             str_tertiary += (';(' + str(I[0]+1) + ',' + str(I[1]+1) + '):color=""#FFFF00""')   
         
     tertiary_bp = ''.join(str_tertiary) 
-    #with open(args.outputs + "multiplets_bp.txt", "w") as f:
-    #    f.write(multiplets_bp)
-    #print(multiplets_bp)
 
-    ct_file_output(pred_pairs, seq, name, args.outputs)
-    bpseq_file_output(pred_pairs, seq, name, args.outputs)
-    np.savetxt(args.outputs + '/'+ name +'.prob', y_pred, delimiter='\t')
+    if args.outputs=='outputs/':
+        output_path = os.path.join(base_path, args.outputs)
+    else:
+        output_path = args.outputs
+
+    ct_file_output(pred_pairs, seq, name, output_path)
+    bpseq_file_output(pred_pairs, seq, name, output_path)
+    np.savetxt(output_path + '/'+ name +'.prob', y_pred, delimiter='\t')
     
     if args.plots:
         try:
-            subprocess.Popen(["java", "-cp", base_path + "/VARNAv3-93.jar", "fr.orsay.lri.varna.applications.VARNAcmd", '-i', args.outputs + name + '.ct', '-o', args.outputs + name + '_radiate.png', '-algorithm', 'radiate', '-resolution', '8.0', '-bpStyle', 'lw', '-auxBPs', tertiary_bp], stderr=subprocess.STDOUT, stdout=subprocess.PIPE).communicate()[0]
-            subprocess.Popen(["java", "-cp", base_path + "/VARNAv3-93.jar", "fr.orsay.lri.varna.applications.VARNAcmd", '-i', args.outputs + name + '.ct', '-o', args.outputs + name + '_line.png', '-algorithm', 'line', '-resolution', '8.0', '-bpStyle', 'lw', '-auxBPs', tertiary_bp], stderr=subprocess.STDOUT, stdout=subprocess.PIPE).communicate()[0]
+            subprocess.Popen(["java", "-cp", base_path + "/VARNAv3-93.jar", "fr.orsay.lri.varna.applications.VARNAcmd", '-i', output_path + name + '.ct', '-o', output_path + name + '_radiate.png', '-algorithm', 'radiate', '-resolution', '8.0', '-bpStyle', 'lw', '-auxBPs', tertiary_bp], stderr=subprocess.STDOUT, stdout=subprocess.PIPE).communicate()[0]
+            subprocess.Popen(["java", "-cp", base_path + "/VARNAv3-93.jar", "fr.orsay.lri.varna.applications.VARNAcmd", '-i', output_path + name + '.ct', '-o', output_path + name + '_line.png', '-algorithm', 'line', '-resolution', '8.0', '-bpStyle', 'lw', '-auxBPs', tertiary_bp], stderr=subprocess.STDOUT, stdout=subprocess.PIPE).communicate()[0]
         except:
             print('\nUnable to generate 2D plots;\nplease refer to "http://varna.lri.fr/" for system requirments to use VARNA')	
 
     if args.motifs:
         try:
-            os.chdir(args.outputs)
+            os.chdir(output_path)
             p = subprocess.Popen(['perl', base_path + '/bpRNA-master/bpRNA.pl', name + '.bpseq'])
         except:
             print('\nUnable to run bpRNA script;\nplease refer to "https://github.com/hendrixlab/bpRNA/" for system requirments to use bpRNA')
