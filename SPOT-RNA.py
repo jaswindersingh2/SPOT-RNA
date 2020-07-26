@@ -4,12 +4,13 @@ import os
 from tqdm import tqdm
 import argparse
 from utils.utils import create_tfr_files, prob_to_secondary_structure
+from utils.FastaMLtoSL import FastaMLtoSL
 import time
 start = time.time()
 from argparse import RawTextHelpFormatter
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--inputs', default='sample_inputs/2zzm-B.fasta', type=str, help='Path to input file in fasta format, accept multiple sequences as well in fasta format; default = ''sample_inputs/2zzm-1-B.fasta''\n', metavar='')
+parser.add_argument('--inputs', default='sample_inputs/2zzm-B.fasta', type=str, help='Path to input file in fasta format, accept multiple sequences as well in fasta format; default = ''sample_inputs/single_seq.fasta''\n', metavar='')
 parser.add_argument('--outputs',default='outputs/', type=str, help='Path to output files; SPOT-RNA outputs at least three files .ct, .bpseq, and .prob files; default = ''outputs/\n', metavar='')
 parser.add_argument('--gpu', default=-1, type=int, help='To run on GPU, specifiy GPU number. If only one GPU in computer specifiy 0; default = -1 (no GPU)\n', metavar='')
 parser.add_argument('--plots',default=False, type=bool, help='Set this to "True" to get the 2D plots of predicted secondary structure by SPOT-RNA; default = False\n', metavar='')
@@ -19,6 +20,8 @@ args = parser.parse_args()
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+
+FastaMLtoSL(args.inputs)
 
 base_path = os.path.dirname(os.path.realpath(__file__))
 input_file = os.path.basename(args.inputs)
