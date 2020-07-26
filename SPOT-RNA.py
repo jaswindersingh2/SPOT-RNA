@@ -3,7 +3,7 @@ import numpy as np
 import os
 from tqdm import tqdm
 import argparse
-from utils import create_tfr_files, prob_to_secondary_structure
+from utils.utils import create_tfr_files, prob_to_secondary_structure
 import time
 start = time.time()
 from argparse import RawTextHelpFormatter
