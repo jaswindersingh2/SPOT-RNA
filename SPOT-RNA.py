@@ -15,6 +15,7 @@ parser.add_argument('--outputs',default='outputs/', type=str, help='Path to outp
 parser.add_argument('--gpu', default=-1, type=int, help='To run on GPU, specifiy GPU number. If only one GPU in computer specifiy 0; default = -1 (no GPU)\n', metavar='')
 parser.add_argument('--plots',default=False, type=bool, help='Set this to "True" to get the 2D plots of predicted secondary structure by SPOT-RNA; default = False\n', metavar='')
 parser.add_argument('--motifs',default=False, type=bool, help='Set this to "True" to get the motifs of predicted secondary structure by SPOT-RNA; default = False\n', metavar='')
+parser.add_argument('--cpu',default=16, type=int, help='Specify number of cpu threads that SPOT-RNA can use; default = 16\n', metavar='')
 #parser.add_argument('--NC',default=True, type=bool, help='Set this to "False" to predict only canonical pairs; default = True\n', metavar='')
 args = parser.parse_args()
 
@@ -50,12 +51,14 @@ def sigmoid(x):
     return 1/(1+np.exp(-np.array(x, dtype=np.float128)))
 
 for MODEL in range(NUM_MODELS):
-    config = tf.compat.v1.ConfigProto()
-    #config.gpu_options.allow_growth = True
-    config.allow_soft_placement=True
-    config.log_device_placement=False
-    #session_conf = tf.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
-    #sess = tf.Session(config=session_conf)
+
+    if args.gpu==-1:
+            config = tf.ConfigProto(intra_op_parallelism_threads=args.cpu, inter_op_parallelism_threads=args.cpu)
+    else:
+	    config = tf.compat.v1.ConfigProto()
+	    config.allow_soft_placement=True
+	    config.log_device_placement=False
+        
     print('\nPredicting for SPOT-RNA model '+str(MODEL))
     with tf.compat.v1.Session(config=config) as sess:
         saver = tf.compat.v1.train.import_meta_graph(os.path.join(base_path, 'SPOT-RNA-models', 'model' + str(MODEL) + '.meta'))
