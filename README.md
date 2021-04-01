@@ -103,7 +103,7 @@ The output of the above command will generate two additional files (arc plot and
 
 **Secondary structure motifs from predicted structure:**
 
-To get the secondary structure motifs like stem, helix, loops from the predicted structure, SPOT-RNA used the software tool from bpRNA[1].  Please refer to https://github.com/hendrixlab/bpRNA for detailed information about this tool. To run this script, please make sure 'Graph.pm' module (https://metacpan.org/pod/Graph) of Perl is installed in the system. To check whether 'Graph' module already installed or not, use the following command:
+To get the secondary structure motifs (stem, helix, loops etc) and predicted output in Vienna (dot-bracket) format, SPOT-RNA used the software tool from bpRNA[1].  Please refer to https://github.com/hendrixlab/bpRNA for detailed information about this tool. To run this script, please make sure 'Graph.pm' module (https://metacpan.org/pod/Graph) of Perl is installed in the system. To check whether 'Graph' module already installed or not, use the following command:
 ```
 perl -e 'use Graph;'
 ```
