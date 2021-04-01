@@ -1,5 +1,6 @@
 #!/usr/bin/perl -w
 use Graph;
+use Graph::Undirected;
 use strict;
 
 #####################################################################

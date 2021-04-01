@@ -1,8 +1,10 @@
 import numpy as np
-import os, six, sys, subprocess
+import os, six, sys, subprocess, time
 import tensorflow as tf
 import random
 from tqdm import tqdm
+from subprocess import PIPE
+import pandas as pd
 
 # ------------- one hot encoding of RNA sequences -----------------#
 def one_hot(seq):
@@ -303,7 +305,12 @@ def prob_to_secondary_structure(ensemble_outputs, label_mask, seq, name, args, b
         try:
             os.chdir(output_path)
             p = subprocess.Popen(['perl', base_path + '/utils/bpRNA-master/bpRNA.pl', name + '.bpseq'])
+            time.sleep(0.1)
+            #print(os.path.exists(output_path + '/' + name + '.st'))
+            with open(output_path + '/' + name + '.st') as f:
+                df = pd.read_csv(f, comment='#', sep=";", header=None)
+            np.savetxt(output_path + '/'+ name +'.dbn', np.array([df[0][0], df[0][1]]), fmt="%s", header='>' + name, comments='')
         except:
             print('\nUnable to run bpRNA script;\nplease refer to "https://github.com/hendrixlab/bpRNA/" for system requirments to use bpRNA')
-        os.chdir('../')
+        os.chdir(base_path)
     return
