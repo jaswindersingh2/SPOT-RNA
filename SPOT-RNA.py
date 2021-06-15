@@ -58,7 +58,8 @@ for MODEL in range(NUM_MODELS):
 	    config = tf.compat.v1.ConfigProto()
 	    config.allow_soft_placement=True
 	    config.log_device_placement=False
-        
+	    config.gpu_options.allow_growth = True
+
     print('\nPredicting for SPOT-RNA model '+str(MODEL))
     with tf.compat.v1.Session(config=config) as sess:
         saver = tf.compat.v1.train.import_meta_graph(os.path.join(base_path, 'SPOT-RNA-models', 'model' + str(MODEL) + '.meta'))
@@ -84,7 +85,7 @@ for MODEL in range(NUM_MODELS):
                     outputs[out[1]].append(sigmoid(out[0]))
                 #print('RNA name: %s'%(out[1]))
                 pbar.update(1)
-            except:
+            except tf.errors.OutOfRangeError:
                 break
         pbar.close()
     tf.compat.v1.reset_default_graph()
