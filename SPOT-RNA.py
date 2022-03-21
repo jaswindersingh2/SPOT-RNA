@@ -53,7 +53,7 @@ def sigmoid(x):
 for MODEL in range(NUM_MODELS):
 
     if args.gpu==-1:
-            config = tf.ConfigProto(intra_op_parallelism_threads=args.cpu, inter_op_parallelism_threads=args.cpu)
+            config = tf.compat.v1.ConfigProto(intra_op_parallelism_threads=args.cpu, inter_op_parallelism_threads=args.cpu)
     else:
 	    config = tf.compat.v1.ConfigProto()
 	    config.allow_soft_placement=True
