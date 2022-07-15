@@ -296,8 +296,13 @@ def prob_to_secondary_structure(ensemble_outputs, label_mask, seq, name, args, b
     
     if args.plots:
         try:
-            subprocess.Popen(["java", "-cp", base_path + "/utils/VARNAv3-93.jar", "fr.orsay.lri.varna.applications.VARNAcmd", '-i', output_path + name + '.ct', '-o', output_path + name + '_radiate.png', '-algorithm', 'radiate', '-resolution', '8.0', '-bpStyle', 'lw', '-auxBPs', tertiary_bp], stderr=subprocess.STDOUT, stdout=subprocess.PIPE).communicate()[0]
-            subprocess.Popen(["java", "-cp", base_path + "/utils/VARNAv3-93.jar", "fr.orsay.lri.varna.applications.VARNAcmd", '-i', output_path + name + '.ct', '-o', output_path + name + '_line.png', '-algorithm', 'line', '-resolution', '8.0', '-bpStyle', 'lw', '-auxBPs', tertiary_bp], stderr=subprocess.STDOUT, stdout=subprocess.PIPE).communicate()[0]
+            varna_command = ["java", "-cp", base_path + "/utils/VARNAv3-93.jar", "fr.orsay.lri.varna.applications.VARNAcmd", '-i', output_path + name + '.ct', '-resolution', '8.0', '-bpStyle', 'lw', '-auxBPs', tertiary_bp]
+
+            radiate_process = subprocess.Popen(varna_command + ['-o', output_path + name + '_radiate.png', '-algorithm', 'radiate'], stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+            line_process = subprocess.Popen(varna_command + ['-o', output_path + name + '_line.png', '-algorithm', 'line'], stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+
+            radiate_process.communicate()[0]
+            line_process.communicate()[0]
         except:
             print('\nUnable to generate 2D plots;\nplease refer to "http://varna.lri.fr/" for system requirments to use VARNA')	
 
