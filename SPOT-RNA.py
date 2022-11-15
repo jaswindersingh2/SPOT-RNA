@@ -48,7 +48,7 @@ test_loc = [os.path.join(base_path, 'input_tfr_files', input_file+'.tfrecords')]
 outputs = {}
 mask = {}
 def sigmoid(x):
-    return 1/(1+np.exp(-np.array(x, dtype=np.float128)))
+    return 1/(1+np.exp(-np.array(x, dtype=np.float64)))
 
 for MODEL in range(NUM_MODELS):
 
