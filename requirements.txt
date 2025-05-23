@@ -1,5 +1,6 @@
 pandas
-numpy==1.16.4
+numpy
 tqdm
 argparse
 six
+torch

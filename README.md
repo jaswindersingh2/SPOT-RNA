@@ -7,7 +7,8 @@ Contents
   * [Results](#results)
   * [System Requirments](#system-requirments)
   * [Installation](#installation)
-  * [Usage](#Usage)
+  * [Usage (Original TensorFlow Version)](#usage-original-tensorflow-version)
+  * [PyTorch Version (SPOT-RNA-PyTorch)](#pytorch-version-spot-rna-pytorch)
   * [Datasets](#datasets)
   * [Citation guide](#citation-guide)
   * [Licence](#licence)
@@ -35,36 +36,73 @@ System Requirments
 ----
 
 **Hardware Requirments:**
-SPOT-RNA predictor requires only a standard computer with around 16 GB RAM to support the in-memory operations for RNAs sequence length less than 500.
+SPOT-RNA predictor requires only a standard computer with around 16 GB RAM to support the in-memory operations for RNAs sequence length less than 500. (This applies to both TensorFlow and PyTorch versions).
 
-**Software Requirments:**
+**Software Requirments (Original TensorFlow Version):**
 * [Python3](https://docs.python-guide.org/starting/install3/linux/)
 * [virtualenv](https://virtualenv.pypa.io/en/latest/installation/) or [Anaconda](https://anaconda.org/anaconda/virtualenv)
 * [CUDA 10.0](https://developer.nvidia.com/cuda-10.0-download-archive) (Optional If using GPU)
 * [cuDNN (>= 7.4.1)](https://developer.nvidia.com/cudnn) (Optional If using GPU)
 
-SPOT-RNA has been tested on Ubuntu 14.04, 16.04, and 18.04 operating systems.
+**Software Requirments (PyTorch Version):**
+* [Python3](https://docs.python-guide.org/starting/install3/linux/) (Python 3.7+ recommended)
+* [virtualenv](https://virtualenv.pypa.io/en/latest/installation/) or [Anaconda](https://anaconda.org/anaconda/virtualenv)
+* PyTorch (CPU or GPU version, see https://pytorch.org/get-started/locally/)
+* NumPy, Pandas (usually installed with PyTorch or via `requirements.txt`)
+* CUDA/cuDNN (if using GPU version of PyTorch)
+
+SPOT-RNA (both versions) has been tested on Ubuntu 14.04, 16.04, and 18.04 operating systems. The PyTorch version is generally more portable across different operating systems.
 
 Installation
 ----
 
-To install SPOT-RNA and it's dependencies following commands can be used in terminal:
+**For Original TensorFlow Version:**
 
 1. `git clone https://github.com/jaswindersingh2/SPOT-RNA.git`
 2. `cd SPOT-RNA`
 3. `wget 'https://www.dropbox.com/s/dsrcf460nbjqpxa/SPOT-RNA-models.tar.gz' || wget -O SPOT-RNA-models.tar.gz 'https://app.nihaocloud.com/f/fbf3315a91d542c0bdc2/?dl=1'`
-4. `tar -xvzf SPOT-RNA-models.tar.gz && rm SPOT-RNA-models.tar.gz`
+4. `tar -xvzf SPOT-RNA-models.tar.gz && rm SPOT-RNA-models.tar.gz` (This provides the TensorFlow models)
 
 Either follow **virtualenv** column steps or **conda** column steps to create virtual environment and to install SPOT-RNA dependencies given in table below:<br />
 
 |  | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; virtualenv | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; conda |
 | :- | :-------- | :--- |
-| 5. | `virtualenv -p python3.6 venv` | `conda create -n venv python=3.6` |
-| 6. | `source ./venv/bin/activate` | `conda activate venv` | 
+| 5. | `virtualenv -p python3.6 venv_tf` (using python3.6 for TF 1.14) | `conda create -n venv_tf python=3.6` |
+| 6. | `source ./venv_tf/bin/activate` | `conda activate venv_tf` | 
 | 7. | *To run SPOT-RNA on CPU:*<br /> <br /> `pip install tensorflow==1.14.0` <br /> <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *or* <br /> <br />*To run SPOT-RNA on GPU:*<br /> <br /> `pip install tensorflow-gpu==1.14.0` | *To run SPOT-RNA on CPU:*<br /> <br /> `conda install tensorflow==1.14.0` <br /> <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *or* <br /> <br />*To run SPOT-RNA on GPU:*<br /> <br /> `conda install tensorflow-gpu==1.14.0` |
-| 8. | `pip install -r requirements.txt` | `while read p; do conda install --yes $p; done < requirements.txt` | 
+| 8. | `pip install -r requirements_tf.txt` (assuming original requirements are renamed) | `while read p; do conda install --yes $p; done < requirements_tf.txt` | 
 
-Usage
+**For PyTorch Version (SPOT-RNA-PyTorch):**
+
+(Assumes you have already cloned the repository: `git clone https://github.com/jaswindersingh2/SPOT-RNA.git && cd SPOT-RNA`)
+
+1. Create a new virtual environment (Python 3.7+ recommended):
+   * Using virtualenv:
+     ```bash
+     virtualenv -p python3 venv_pytorch
+     source ./venv_pytorch/bin/activate
+     ```
+   * Using conda:
+     ```bash
+     conda create -n venv_pytorch python=3.8  # Or any Python 3.7+
+     conda activate venv_pytorch
+     ```
+2. Install PyTorch:
+   Visit https://pytorch.org/get-started/locally/ to get the correct command for your system (OS, package manager, CUDA version if applicable). For example:
+   ```bash
+   # Example for Linux, pip, with CUDA 11.8 (check PyTorch website for current commands)
+   # pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+   # Example for CPU only:
+   pip install torch torchvision torchaudio
+   ```
+3. Install other dependencies:
+   The PyTorch version uses a `requirements.txt` file (which should have been updated on the `pytorch-conversion` branch).
+   ```bash
+   pip install -r requirements.txt 
+   ```
+   This will install `numpy`, `pandas`, etc. (Note: `argparse` is part of standard Python).
+
+Usage (Original TensorFlow Version)
 ----
 
 **For single sequence:**
@@ -85,38 +123,61 @@ SPOT-RNA can be run on GPU by setting '--GPU' argument to GPU's number in the sy
 python3 SPOT-RNA.py  --inputs sample_inputs/batch_seq.fasta  --outputs 'outputs/' --gpu 0
 ```
 
-**2D plots of predicted secondary structure:**
-
-To get the 2D plots of SPOT-RNA output, VARNA[3] tool is used. Please refer to http://varna.lri.fr/ for detailed information about this tool. To run this tool, please make sure Java plugin version >= 1.6 is installed in the system. To check whether java is installed or not, the following command can be used.
-```
-java -version
-```
-If java is not installed above command will not show anything. To install java in the system following command can be used.
-```
-sudo apt install default-jre && sudo apt install openjdk-11-jre-headless
-```
-After java install, the following command can be used to get SPOT-RNA output with 2D plots of predicted secondary structure.
+**2D plots of predicted secondary structure (VARNA):**
+(Requires Java, see [System Requirments](#system-requirments) and original installation for Java setup)
 ```
 python3 SPOT-RNA.py  --inputs sample_inputs/single_seq.fasta  --outputs 'outputs/' --plots True
 ```
-The output of the above command will generate two additional files (arc plot and 2D plot of predicted secondary structure) along with '.bpseq', '.ct', and '.prob' files in 'outputs' folder.
 
-**Secondary structure motifs from predicted structure:**
-
-To get the secondary structure motifs (stem, helix, loops etc) and predicted output in Vienna (dot-bracket) format, SPOT-RNA used the software tool from bpRNA[1].  Please refer to https://github.com/hendrixlab/bpRNA for detailed information about this tool. To run this script, please make sure 'Graph.pm' module (https://metacpan.org/pod/Graph) of Perl is installed in the system. To check whether 'Graph' module already installed or not, use the following command:
-```
-perl -e 'use Graph;'
-```
-If the output of this command looks like *'Can't locate Graph.pm in @INC (you may need to install the Graph module) (@INC contains: .........'* then the following command can be used to install this module:
-```
-sudo apt install cpanminus && sudo cpanm Graph
-```
-
-After the 'Graph' module install, the following command can be used to get SPOT-RNA output with secondary structure motifs:
+**Secondary structure motifs from predicted structure (bpRNA):**
+(Requires Perl and Graph.pm module, see original installation for setup)
 ```
 python3 SPOT-RNA.py  --inputs sample_inputs/single_seq.fasta  --outputs 'outputs/' --plots True --motifs True
 ```
-The output of the above command will generate one additional file '.st' in 'outputs' folder.
+
+PyTorch Version (SPOT-RNA-PyTorch)
+----
+This section describes the PyTorch version of SPOT-RNA, named `SPOT-RNA_pytorch.py`. It is a conversion of the data processing and inference pipeline from TensorFlow to PyTorch.
+
+**Important Note on Pre-trained Models:**
+The original pre-trained TensorFlow models (`.meta`, `.index`, `.data` files) are **not automatically converted** to PyTorch format by this script. The `SPOT-RNA_pytorch.py` script currently includes a `PlaceholderSPOTRNA` model. To perform actual predictions with the same accuracy as the original SPOT-RNA, equivalent pre-trained PyTorch models (e.g., `.pth` or `.pt` files for the ensemble) would need to be trained or converted separately and loaded into the PyTorch model class. The script contains commented-out placeholders where `model.load_state_dict(...)` would be called.
+
+**Basic Usage:**
+The command-line arguments are similar to the original TensorFlow version.
+
+*   **For a single sequence:**
+    ```bash
+    python SPOT-RNA_pytorch.py --inputs sample_inputs/single_seq.fasta --outputs outputs_pytorch/ --cpu 4
+    ```
+*   **For a batch of sequences:**
+    ```bash
+    python SPOT-RNA_pytorch.py --inputs sample_inputs/batch_seq.fasta --outputs outputs_pytorch/
+    ```
+*   **To run on GPU (if PyTorch GPU version is installed and models are adapted for GPU):**
+    ```bash
+    python SPOT-RNA_pytorch.py --inputs sample_inputs/batch_seq.fasta --outputs outputs_pytorch/ --gpu 0
+    ```
+    (Note: The current placeholder model runs on CPU by default, but device handling is included for future models).
+
+*   **To generate 2D plots (requires Java and VARNA setup, see original TensorFlow section for details):**
+    ```bash
+    python SPOT-RNA_pytorch.py --inputs sample_inputs/single_seq.fasta --outputs outputs_pytorch/ --plots True
+    ```
+*   **To generate motifs (requires Perl and bpRNA setup, see original TensorFlow section for details):**
+    ```bash
+    python SPOT-RNA_pytorch.py --inputs sample_inputs/single_seq.fasta --outputs outputs_pytorch/ --motifs True --plots True 
+    ```
+
+**Output Files:**
+The PyTorch version produces the same output files as the original:
+*   `.ct` file: Connectivity table representing the secondary structure.
+*   `.bpseq` file: Base pair sequence format.
+*   `.prob` file: Contains the (L,L) probability map for base pairings.
+*   Optional: `.png` files for VARNA plots if `--plots True`.
+*   Optional: `.st` and `.dbn` files if `--motifs True`.
+
+**Requirements File:**
+The PyTorch version uses an updated `requirements.txt` file which includes `torch` and other necessary Python packages. Ensure you have installed these using `pip install -r requirements.txt` in your PyTorch environment.
 
 Datasets
 ----
